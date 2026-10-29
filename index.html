@@ -178,6 +178,13 @@ details.detail:not([open]) summary .opened{display:none}
 .mock .mbar span{display:block; height:100%; background:var(--st-open)}
 .ejemplo{display:flex; flex-direction:column; gap:12px}
 .ejemplo h4{font-family:var(--display); font-size:1.05rem; margin:8px 0 0}
+.subrow{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:6px 12px}
+.gh-link{font-family:var(--mono); font-size:.74rem; padding:3px 10px; border-radius:6px; border:1px solid var(--accent); color:var(--accent); text-decoration:none; white-space:nowrap}
+.gh-link:hover{background:var(--accent-soft)}
+.gh-link.flash{box-shadow:0 0 0 4px var(--mark)}
+#steps input[type=checkbox]{cursor:default}
+.project.np{opacity:.6}
+.toast{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(20px + env(safe-area-inset-bottom, 0px)); z-index:20; background:var(--fg); color:var(--bg); padding:10px 16px; border-radius:8px; font-size:.92rem; max-width:min(92vw, 520px); box-shadow:0 6px 20px rgba(0,0,0,.25)}
 dl.concepts{margin:0; display:flex; flex-direction:column; gap:10px}
 dl.concepts dt{font-weight:700}
 dl.concepts dd{margin:2px 0 0; color:var(--muted)}
@@ -201,7 +208,7 @@ button.small:hover{color:var(--fg)}
     <div class="toprow">
       <span class="name">Ruta de Ronald</span>
       <span class="where" id="where">Paso 1</span>
-      <span class="stats"><span class="where" id="oficial" hidden></span><span class="bar"><span id="bar"></span></span><span class="where" id="count">Carrera 0%</span></span>
+      <span class="stats"><span class="bar"><span id="bar"></span></span><span class="where" id="count">Carrera 0%</span></span>
     </div>
     <nav class="rail" id="rail" aria-label="Pasos del plan"></nav>
   </div>
@@ -433,13 +440,13 @@ git push -u origin main</pre>
     <p class="muted">Antes del <code>git remote add</code>, crea en GitHub un repositorio vacío llamado <code>bitacora</code> con el botón <b>New</b> (nuevo), sin marcar <b>Add a README file</b>.</p>
   </div>
   <div class="card">
-    <h3>Tu avance oficial: en el repositorio de tu mentor</h3>
-    <p>Las casillas de esta página se guardan solo en tu navegador. Tu avance oficial se marca en GitHub, en el repositorio de tu mentor, <code>gcruzz/IT-Programming</code>. Ahí cada fase es un <b>milestone</b> (hito) y cada proyecto es un <b>issue</b> (tarea) con su lista de casillas. GitHub calcula solo el porcentaje de cada fase, y tu mentor lo ve en el momento.</p>
+    <h3>Tu avance: se marca en un solo lugar, GitHub</h3>
+    <p>Todo tu avance se marca en GitHub, en el repositorio de tu mentor, <code>gcruzz/IT-Programming</code>. Las casillas de este plan no se tocan: se marcan solas con lo que marcas allá. Junto a cada lista vas a ver el botón <b>Marcar en GitHub →</b>, que te lleva directo al issue que corresponde. Ahí cada fase es un <b>milestone</b> (hito) y cada proyecto es un <b>issue</b> (tarea) con su lista de casillas. GitHub calcula solo el porcentaje de cada fase, y tu mentor lo ve en el momento.</p>
     <ol class="steps">
       <li>Tu mentor te invita como colaborador. Te llega un correo de GitHub: tócalo y elige <b>Accept invitation</b> (aceptar invitación). También puedes aceptarla en <a href="https://github.com/gcruzz/IT-Programming/invitations" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/invitations</a>.</li>
       <li>Entra a <a href="https://github.com/gcruzz/IT-Programming/milestones" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/milestones</a>. Vas a ver las 15 fases, cada una con su porcentaje.</li>
       <li>Toca la fase en la que estás. Cada fase tiene 4 issues: el proyecto de prueba, los 2 proyectos propuestos y "Semanas y cursos".</li>
-      <li>Abre el issue y marca las casillas a medida que avanzas: se marcan directamente, sin editar nada. Más abajo tienes un ejemplo completo con dibujos. Unos minutos después, la versión oficial de este plan muestra en cada fase tu <b>avance oficial</b>.</li>
+      <li>Abre el issue y marca las casillas a medida que avanzas: se marcan directamente, sin editar nada. Más abajo tienes un ejemplo completo con dibujos. Uno o dos minutos después, las casillas de este plan aparecen marcadas igual y se actualiza tu porcentaje.</li>
       <li>Cuando termines un proyecto, toca <b>Close issue</b> (cerrar issue). El proyecto propuesto que decidas no hacer ciérralo con la flecha al lado del botón → <b>Close as not planned</b> (cerrar como no planeado). Cierra "Semanas y cursos" cuando marques todas sus casillas.</li>
       <li>Truco: si en un commit del repositorio de un proyecto escribes <code>Closes gcruzz/IT-Programming#12</code> (la palabra va en inglés), GitHub cierra solo el issue 12 cuando subes ese commit.</li>
     </ol>
@@ -488,19 +495,11 @@ git push -u origin main</pre>
       <div class="mock-foot"><span class="mbar"><span style="width:50%"></span></span><span class="nota"><b>50%</b> complete · 2 open · 2 closed</span></div>
     </div>
     <p>En la versión oficial del plan (<code>gcruzz.github.io/plan-developer</code>), uno o dos minutos después, la fase 2 muestra:</p>
-    <div class="pstat" style="padding:10px 14px; border:1px solid var(--line); border-radius:8px; background:var(--surface)"><span class="estado curso">Oficial: En curso</span><span class="pbar"><span style="width:59%"></span></span><span class="mono">59% · 2 de 4 issues cerrados en GitHub</span></div>
+    <div class="pstat" style="padding:10px 14px; border:1px solid var(--line); border-radius:8px; background:var(--surface)"><span class="estado curso">En curso</span><span class="pbar"><span style="width:59%"></span></span><span class="mono">59% de la fase · 2 de 4 issues cerrados en GitHub</span></div>
     <p>Los números no coinciden, y está bien. GitHub solo cuenta issues cerrados. El plan también cuenta las casillas que marcaste: proyectos 70%, semanas 20%, cursos 10%. La fase pasa a <b>Completada</b> cuando cierras el proyecto de prueba y uno de los propuestos.</p>
 
-    <h4>6. Las casillas de esta página y las de GitHub</h4>
-    <div class="tbl"><table>
-      <thead><tr><th></th><th>Casillas de esta página</th><th>Issues de GitHub</th></tr></thead>
-      <tbody>
-        <tr><td><b>Para qué</b></td><td>Tu borrador personal, para ir guiándote</td><td>Tu avance oficial</td></tr>
-        <tr><td><b>Dónde se guarda</b></td><td>Solo en este navegador</td><td>En el repositorio de tu mentor</td></tr>
-        <tr><td><b>Quién lo ve</b></td><td>Solo tú, en esta computadora</td><td>Tú y tu mentor, desde cualquier lugar</td></tr>
-        <tr><td><b>En la página se ve como</b></td><td>"…% en tus casillas"</td><td>"Oficial: …"</td></tr>
-      </tbody>
-    </table></div>
+    <h4>6. Y las casillas de esta página</h4>
+    <p>Las casillas de este plan son un espejo de GitHub: aparecen marcadas cuando las marcas en los issues, y no se pueden marcar aquí. Si tocas una, el plan te avisa y resalta el botón <b>Marcar en GitHub →</b>. Así hay un solo lugar donde marcar, y lo que ves aquí es exactamente lo mismo que ve tu mentor.</p>
 
     <h4>7. Si algo sale mal</h4>
     <ul class="rules">
@@ -584,7 +583,7 @@ git push -u origin main</pre>
       <li>Pon el link al repositorio del proyecto.</li>
       <li>Si es un programa de terminal, saca una captura de pantalla, súbela a una carpeta <code>img</code> en el repo del portafolio y agrégala con la línea <code>&lt;img&gt;</code>.</li>
       <li>Si es una página web (desde la fase 5), publícala también con GitHub Pages en su propio repo y agrega el link de la demo. Quedará en <code>tu-usuario.github.io/nombre-del-repo</code>.</li>
-      <li>Haz commit con un mensaje como "Agrega Juego de preguntas al portafolio" y marca en este plan la casilla <b>Lo agregué a mi portafolio</b>.</li>
+      <li>Haz commit con un mensaje como "Agrega Juego de preguntas al portafolio" y marca en el issue del proyecto, en GitHub, la casilla <b>Lo agregué a mi portafolio</b>.</li>
     </ol>
   </div>
   <div class="block">
@@ -706,16 +705,16 @@ para que yo lo arregle:
   </div>
   <div class="block">
     <h3>Tu porcentaje de avance</h3>
-    <p>Arriba ves cuánto llevas de toda la carrera, y en cada fase, su propio porcentaje. Se calcula así, para que construir pese más que mirar videos:</p>
+    <p>Arriba ves cuánto llevas de toda la carrera, y en cada fase, su propio porcentaje. Todo sale de lo que marcas en GitHub, y se calcula así, para que construir pese más que mirar videos:</p>
     <div class="tbl"><table>
-      <thead><tr><th>Qué marcas</th><th>Cuánto pesa</th></tr></thead>
+      <thead><tr><th>Qué marcas en GitHub</th><th>Cuánto pesa</th></tr></thead>
       <tbody>
         <tr><td>Proyectos: las casillas de "listo cuando" del proyecto de prueba y del mejor de tus proyectos propuestos</td><td class="mono">70%</td></tr>
-        <tr><td>Semanas terminadas (casilla junto a cada semana)</td><td class="mono">20%</td></tr>
-        <tr><td>Cursos vistos (casilla junto a cada curso)</td><td class="mono">10%</td></tr>
+        <tr><td>Semanas terminadas (issue "Semanas y cursos" de la fase)</td><td class="mono">20%</td></tr>
+        <tr><td>Cursos vistos (issue "Semanas y cursos" de la fase)</td><td class="mono">10%</td></tr>
       </tbody>
     </table></div>
-    <p>Una fase queda <b>Completada</b> cuando terminas su proyecto de prueba y al menos uno de los propuestos. Estas casillas se guardan solo en este navegador: tu avance oficial se marca en el repositorio de tu mentor, <code>gcruzz/IT-Programming</code> (pantalla <b>GitHub</b>).</p>
+    <p>Una fase queda <b>Completada</b> cuando terminas su proyecto de prueba y al menos uno de los propuestos. Cerrar un issue cuenta como terminado aunque falte alguna casilla, y un propuesto cerrado como "no planeado" no cuenta. Las casillas de este plan solo muestran lo que marcaste en GitHub (pantalla <b>GitHub</b>).</p>
   </div>
   <div class="block">
     <h3>Para cuando sientas que no avanzas</h3>
@@ -746,7 +745,7 @@ para que yo lo arregle:
       <li>Ahora te toca a ti: enséñale a alguien que esté empezando. Explicar es la mejor forma de dominar lo que sabes.</li>
     </ul>
   </div>
-  <p class="muted">Tu progreso se guarda solo en este navegador. Lo oficial es tu GitHub. <button type="button" class="small" id="reset">Reiniciar progreso</button></p>
+  <p class="muted">Tu avance se marca en GitHub, en el repositorio de tu mentor. Este plan lo muestra solo.</p>
 </section>
 
 </div></main>
@@ -4098,9 +4097,7 @@ var PHASES = [
 ];
 
 (function(){
-  var KEY = "ruta-ronald-v5", POS = "ruta-ronald-paso-v5";
-  var state = {};
-  try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e) { state = {}; }
+  var POS = "ruta-ronald-paso-v5";
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function li(arr){ return arr.map(function(t){ return '<li>' + esc(t) + '</li>'; }).join(''); }
 
@@ -4113,13 +4110,14 @@ var PHASES = [
     sec.setAttribute('data-id', 'fase-' + p.n);
     var D = DETAIL[p.n] || {};
     var pre = 'f' + p.n + '-';
+    function ghLink(tipo){ return '<a class="gh-link" data-gh="' + tipo + '" href="https://github.com/gcruzz/IT-Programming/milestones" target="_blank" rel="noopener">Marcar en GitHub →</a>'; }
     var courses = p.courses.map(function(c, ci){
       var o = OS[c[2]], tag = '';
       if (o && o.os === 'varios') tag = '<span class="os">incluye Windows</span>';
       var note = (o && o.note) ? '<span class="osnote">En Windows: ' + esc(o.note.replace(/^En Windows[,:;\s]*/i, '')) + '</span>' : '';
-      return '<li><label class="seen" title="Ya vi este curso"><input type="checkbox" id="c' + p.n + '-' + ci + '" aria-label="Ya vi este curso: ' + esc(c[1]) + '"></label><span class="year">' + esc(c[0]) + '</span><span><a href="' + esc(c[2]) + '" target="_blank" rel="noopener">' + esc(c[1]) + '</a>' + tag + note + '</span></li>';
+      return '<li><label class="seen" title="Se marca en GitHub"><input type="checkbox" id="c' + p.n + '-' + ci + '" data-txt="' + esc(c[1]) + '" aria-label="Curso visto: ' + esc(c[1]) + '"></label><span class="year">' + esc(c[0]) + '</span><span><a href="' + esc(c[2]) + '" target="_blank" rel="noopener">' + esc(c[1]) + '</a>' + tag + note + '</span></li>';
     }).join('');
-    function portLabel(id){ return '<label><input type="checkbox" id="' + id + '"><span><b>Lo agregué a mi portafolio</b> (tu-usuario.github.io)</span></label>'; }
+    function portLabel(id){ return '<label><input type="checkbox" id="' + id + '" data-txt="Lo agregué a mi portafolio"><span><b>Lo agregué a mi portafolio</b> (tu-usuario.github.io)</span></label>'; }
     function stepsHtml(arr){
       return arr.map(function(s){
         if (typeof s === 'string') return '<li>' + esc(s) + '</li>';
@@ -4128,40 +4126,40 @@ var PHASES = [
     }
     function exampleHtml(ex){ return ex ? '<div class="codeblock"><div class="lbl"><span>Ejemplo</span></div><pre>' + esc(ex) + '</pre></div>' : ''; }
     function checksHtml(list, prefix){
-      return list.map(function(d, k){ return '<label><input type="checkbox" id="' + prefix + k + '"><span>' + esc(d) + '</span></label>'; }).join('') + portLabel(prefix + 'port');
+      return list.map(function(d, k){ return '<label><input type="checkbox" id="' + prefix + k + '" data-txt="' + esc(d) + '"><span>' + esc(d) + '</span></label>'; }).join('') + portLabel(prefix + 'port');
     }
     function detailHtml(o, prefix, label, withDone){
       return '<details class="detail"><summary><span class="closed">' + label + '</span><span class="opened">Ocultar detalle</span></summary><div class="detail-body">' +
         (o.features ? '<span class="sub">Qué debe hacer</span><ul>' + li(o.features) + '</ul>' : '') +
         '<span class="sub">Paso a paso</span><ol>' + stepsHtml(o.steps) + '</ol>' +
         exampleHtml(o.example) +
-        (withDone ? '<span class="sub">Listo cuando</span><div class="checks">' + checksHtml(o.done, prefix) + '</div>' : '') +
+        (withDone ? '<div class="subrow"><span class="sub">Listo cuando</span>' + withDone + '</div><div class="checks">' + checksHtml(o.done, prefix) + '</div>' : '') +
         (o.bonus ? '<p class="bonus"><b>Reto extra:</b> ' + esc(o.bonus) + '</p>' : '') +
       '</div></details>';
     }
 
     var mp = D.project;
-    var mainHtml = '<div class="project main"><span class="sub">Proyecto de prueba · obligatorio · repo: ' + esc(p.project.repo) + '</span>' +
+    var mainHtml = '<div class="project main" data-issue="prueba"><span class="sub">Proyecto de prueba · obligatorio · repo: ' + esc(p.project.repo) + '</span>' +
       '<h3>' + esc(p.project.name) + '</h3><p>' + esc(p.project.desc) + '</p>' +
       (mp ? '<p class="muted">' + esc(mp.goal) + '</p>' + detailHtml(mp, pre, 'Ver el proyecto paso a paso', false) : '') +
-      '<span class="sub">Listo cuando</span><div class="checks">' + checksHtml(mp ? mp.done : p.project.done, pre) + '</div></div>';
+      '<div class="subrow"><span class="sub">Listo cuando</span>' + ghLink('prueba') + '</div><div class="checks">' + checksHtml(mp ? mp.done : p.project.done, pre) + '</div></div>';
 
     var extras = p.extra.map(function(x, i){
       var dx = (D.extra && D.extra[i]) || {};
       var em = (D.extraMeta && D.extraMeta[i]) || {};
       var o = { features: em.features || x.features, steps: dx.steps || x.steps, example: dx.example || x.example, done: em.done || x.done, bonus: em.bonus || x.bonus };
-      return '<div class="project">' +
+      return '<div class="project" data-issue="x' + i + '" data-name="' + esc(x.name) + '">' +
         '<span class="level-tag">Dificultad media · opción ' + (i + 1) + '</span>' +
         '<h3>' + esc(x.name) + '</h3>' +
         '<p>' + esc(x.goal) + '</p>' +
-        '<span class="sub">Repo sugerido: ' + esc(x.repo) + '</span>' +
-        detailHtml(o, pre + 'x' + i + '-', 'Ver qué tienes que hacer', true) +
+        '<div class="subrow"><span class="sub">Repo sugerido: ' + esc(x.repo) + '</span>' + ghLink('x' + i) + '</div>' +
+        detailHtml(o, pre + 'x' + i + '-', 'Ver qué tienes que hacer', ghLink('x' + i)) +
       '</div>';
     }).join('');
 
-    var weeksHtml = D.weeks ? '<div class="block"><span class="sub">Semana a semana · marca cada semana al terminarla</span><div class="weeks">' +
+    var weeksHtml = D.weeks ? '<div class="block" data-issue="semanas"><div class="subrow"><span class="sub">Semana a semana · se marca en GitHub</span>' + ghLink('semanas') + '</div><div class="weeks">' +
       D.weeks.map(function(w){
-        return '<div class="week"><span class="wn"><label><input type="checkbox" id="w' + w.w + '" aria-label="Semana ' + w.w + ' terminada">Semana ' + w.w + '</label></span><div class="wb"><b>' + esc(w.t) + '</b>' +
+        return '<div class="week"><span class="wn"><label><input type="checkbox" id="w' + w.w + '" data-sem="' + w.w + '" aria-label="Semana ' + w.w + ' terminada">Semana ' + w.w + '</label></span><div class="wb"><b>' + esc(w.t) + '</b>' +
           '<p><span class="lbl2">Aprende</span>' + esc(w.learn) + '</p>' +
           '<p><span class="lbl2">Practica</span>' + esc(w.practice) + '</p></div></div>';
       }).join('') + '</div></div>' : '';
@@ -4178,12 +4176,11 @@ var PHASES = [
         '<h2>' + esc(p.title) + '</h2>' +
         '<div class="meta"><span class="chip ai">IA: ' + p.ai + '</span>' + (p.isNew ? '<span class="chip new">Fase nueva</span>' : '') + '</div>' +
         '<p>' + esc(p.intro) + '</p>' +
-        '<div class="pstat" data-pstat="' + p.n + '"></div>' +
-        '<div class="pstat" data-oficial="' + p.n + '" hidden></div></div></div>' +
+        '<div class="pstat" data-pstat="' + p.n + '"></div></div></div>' +
       (WIN[p.n] ? '<p class="win"><span><b>En Windows:</b> ' + esc(WIN[p.n]) + '</span><button type="button" class="small" data-goto="windows">Ver la guía de Windows</button></p>' : '') +
       '<div class="block"><span class="sub">Qué aprendes</span><ul class="topics">' + li(p.topics) + '</ul></div>' +
       conceptsHtml +
-      '<div class="block"><span class="sub">Cursos gratis en español · año de publicación</span><ul class="courses">' + courses + '</ul>' + (p.courses.some(function(c){ return OS[c[2]] && OS[c[2]].note; }) ? '<p class="muted">Las notas "En Windows" te dicen qué hacer distinto si el video instala programas o usa la terminal. Si algo no coincide con tu pantalla, revisa la guía de Windows.</p>' : '') + '</div>' +
+      '<div class="block" data-issue="semanas"><div class="subrow"><span class="sub">Cursos gratis en español · año de publicación</span>' + ghLink('semanas') + '</div><ul class="courses">' + courses + '</ul>' + (p.courses.some(function(c){ return OS[c[2]] && OS[c[2]].note; }) ? '<p class="muted">Las notas "En Windows" te dicen qué hacer distinto si el video instala programas o usa la terminal. Si algo no coincide con tu pantalla, revisa la guía de Windows.</p>' : '') + '</div>' +
       weeksHtml +
       mainHtml +
       '<div class="block"><span class="sub">Proyectos propuestos · elige al menos uno</span><div class="extras">' + extras + '</div></div>' +
@@ -4302,7 +4299,6 @@ var PHASES = [
   var railBtns = Array.prototype.slice.call(rail.children);
 
   var boxes = Array.prototype.slice.call(document.querySelectorAll('#steps input[type=checkbox]'));
-  boxes.forEach(function(b){ b.checked = !!state[b.id]; });
 
   var cur = 0;
   function go(i, scroll){
@@ -4335,7 +4331,7 @@ var PHASES = [
       if (!s.classList.contains('phase')) { railBtns[k].textContent = base; return; }
       var main = frac(s.querySelectorAll('.project.main .checks input'));
       var mejor = 0;
-      Array.prototype.forEach.call(s.querySelectorAll('.extras > .project'), function(x){ mejor = Math.max(mejor, frac(x.querySelectorAll('.checks input'))); });
+      Array.prototype.forEach.call(s.querySelectorAll('.extras > .project'), function(x){ if (!x.classList.contains('np')) mejor = Math.max(mejor, frac(x.querySelectorAll('.checks input'))); });
       var proy = 0.6 * main + 0.4 * mejor;
       var sem = s.querySelectorAll('.week input'), cur = s.querySelectorAll('.courses input');
       var pct = Math.round(100 * (0.7 * proy + 0.2 * frac(sem) + 0.1 * frac(cur)));
@@ -4351,7 +4347,7 @@ var PHASES = [
       if (!completa && faseActual === null) faseActual = n;
       var estado = completa ? '<span class="estado completa">Completada</span>' : (pct > 0 ? '<span class="estado curso">En curso</span>' : '<span class="estado">Pendiente</span>');
       var box = s.querySelector('[data-pstat]');
-      if (box) box.innerHTML = estado + '<span class="pbar"><span style="width:' + pct + '%"></span></span><span class="mono">' + pct + '% en tus casillas</span>';
+      if (box) box.innerHTML = estado + '<span class="pbar"><span style="width:' + pct + '%"></span></span><span class="mono">' + pct + '% de la fase' + (s.hasAttribute('data-total') ? ' · ' + s.getAttribute('data-cerrados') + ' de ' + s.getAttribute('data-total') + ' issues cerrados en GitHub' : '') + '</span>';
       s.classList.toggle('done', completa);
       railBtns[k].classList.toggle('done', completa);
       railBtns[k].textContent = base + (pct > 0 && !completa ? ' · ' + pct + '%' : '');
@@ -4363,11 +4359,21 @@ var PHASES = [
       (faseActual !== null ? ' · Fase ' + faseActual + ' de ' + (fases - 1) : ' · ¡Terminada!') +
       (semActual !== null ? ' · Semana ' + semActual + ' de ' + semTotal : '');
   }
-  function save(){
-    boxes.forEach(function(b){ state[b.id] = b.checked; });
-    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {}
+  var toastTimer = null;
+  function aviso(texto){
+    var t = document.getElementById('toast');
+    if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+    t.textContent = texto; t.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.hidden = true; }, 4000);
   }
-  boxes.forEach(function(b){ b.addEventListener('change', function(){ save(); render(); }); });
+  document.addEventListener('click', function(e){
+    var b = e.target;
+    if (!b || b.tagName !== 'INPUT' || b.type !== 'checkbox' || !b.closest('#steps')) return;
+    e.preventDefault();
+    var zona = b.closest('[data-issue]'), link = zona ? zona.querySelector('.gh-link') : null;
+    if (link) { link.classList.add('flash'); setTimeout(function(){ link.classList.remove('flash'); }, 1600); }
+    aviso('Esto se marca en GitHub, no aquí. Toca «Marcar en GitHub →» y marca la casilla en el issue: en unos minutos aparece aquí.');
+  });
 
   document.addEventListener('click', function(e){
     var b = e.target && e.target.closest ? e.target.closest('[data-goto]') : null;
@@ -4392,13 +4398,6 @@ var PHASES = [
     });
   });
 
-  var reset = document.getElementById('reset'), armed = false;
-  reset.addEventListener('click', function(){
-    if (!armed) { armed = true; reset.textContent = '¿Seguro? Toca otra vez'; setTimeout(function(){ armed = false; reset.textContent = 'Reiniciar progreso'; }, 3000); return; }
-    boxes.forEach(function(b){ b.checked = false; }); save(); render();
-    armed = false; reset.textContent = 'Reiniciar progreso';
-  });
-
   var start = 0;
   var h = (location.hash || '').slice(1);
   var fromHash = -1;
@@ -4408,24 +4407,48 @@ var PHASES = [
   render();
   go(start, false);
 
+  var ISSUES = 'https://github.com/gcruzz/IT-Programming/issues/';
+  function norm(t){ return String(t).replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, ''); }
+  function aplicar(cont, it, filtro){
+    if (!cont || !it) return;
+    var set = {}, cerrado = it.estado === 'cerrado';
+    (it.marcadas || []).forEach(function(t){ set[norm(t)] = 1; });
+    Array.prototype.forEach.call(cont.querySelectorAll(filtro || 'input[data-txt]'), function(b){
+      b.checked = cerrado || !!set[norm(b.getAttribute('data-txt'))];
+    });
+  }
+  function enlazar(sec, tipo, it){
+    if (!it) return;
+    Array.prototype.forEach.call(sec.querySelectorAll('.gh-link[data-gh="' + tipo + '"]'), function(a){ a.href = ISSUES + it.numero; });
+  }
   function renderOficial(d){
     if (!d || !d.fases) return;
-    steps.forEach(function(s){
-      if (!s.classList.contains('phase')) return;
-      var n = s.getAttribute('data-id').replace('fase-', ''), f = d.fases[n], box = s.querySelector('[data-oficial]');
-      if (!f || !box) return;
-      var clase = f.completada ? 'completa' : (f.porcentaje > 0 ? 'curso' : '');
-      var texto = f.completada ? 'Completada' : (f.porcentaje > 0 ? 'En curso' : 'Pendiente');
-      box.innerHTML = '<span class="estado ' + clase + '">Oficial: ' + texto + '</span><span class="pbar"><span style="width:' + f.porcentaje + '%"></span></span>' +
-        '<span class="mono">' + f.porcentaje + '% · ' + f.cerrados + ' de ' + f.total + ' issues cerrados en GitHub</span>';
-      box.hidden = false;
+    steps.forEach(function(sec){
+      if (!sec.classList.contains('phase')) return;
+      var f = d.fases[sec.getAttribute('data-id').replace('fase-', '')];
+      if (!f) return;
+      var prueba = null, semanas = null, propuestos = [];
+      f.issues.forEach(function(it){ if (it.tipo === 'prueba') prueba = it; else if (it.tipo === 'semanas') semanas = it; else if (it.tipo === 'propuesto') propuestos.push(it); });
+      aplicar(sec.querySelector('.project.main'), prueba); enlazar(sec, 'prueba', prueba);
+      Array.prototype.forEach.call(sec.querySelectorAll('.extras > .project'), function(x, i){
+        var nombre = x.getAttribute('data-name'), it = null;
+        propuestos.forEach(function(p){ if (!it && p.titulo.indexOf(nombre) >= 0) it = p; });
+        aplicar(x, it); enlazar(sec, 'x' + i, it);
+        x.classList.toggle('np', !!it && it.estado === 'no planeado');
+      });
+      if (semanas) {
+        Array.prototype.forEach.call(sec.querySelectorAll('.courses'), function(ul){ aplicar(ul, semanas); });
+        var hechas = {};
+        (semanas.marcadas || []).forEach(function(t){ var m = /^Semana (\d+)\b/.exec(norm(t)); if (m) hechas[m[1]] = 1; });
+        Array.prototype.forEach.call(sec.querySelectorAll('input[data-sem]'), function(b){ b.checked = semanas.estado === 'cerrado' || !!hechas[b.getAttribute('data-sem')]; });
+        enlazar(sec, 'semanas', semanas);
+      }
+      sec.setAttribute('data-cerrados', f.cerrados); sec.setAttribute('data-total', f.total);
     });
+    render();
     var fecha = '';
     try { fecha = new Date(d.actualizado).toLocaleString('es'); } catch(e) {}
-    var o = document.getElementById('oficial');
-    o.textContent = 'Oficial ' + d.carrera + '% ·';
-    o.title = 'Avance marcado en GitHub' + (fecha ? ', actualizado el ' + fecha : '');
-    o.hidden = false;
+    document.getElementById('count').title = 'Avance marcado en GitHub' + (fecha ? ', actualizado el ' + fecha : '');
   }
   try {
     fetch('progreso.json', { cache: 'no-store' })
