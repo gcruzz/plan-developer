@@ -191,6 +191,9 @@ details.detail:not([open]) summary .opened{display:none}
 .avok{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 12px; padding:12px 14px; border-radius:8px; background:var(--accent-soft)}
 .avok b{color:var(--st-open)}
 .btnp[disabled]{opacity:.6; cursor:wait}
+.avsolo{display:flex; align-items:center; gap:8px; font-size:.9rem; color:var(--muted); cursor:pointer; width:100%}
+.avsolo input{width:16px; height:16px; accent-color:var(--accent)}
+body.solo-lectura #steps .phase input[type=checkbox]{cursor:not-allowed}
 .btnp{font:inherit; font-weight:700; padding:8px 16px; border-radius:6px; border:0; background:var(--accent); color:var(--accent-fg); cursor:pointer}
 .project.np{opacity:.6}
 .toast{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(20px + env(safe-area-inset-bottom, 0px)); z-index:20; background:var(--fg); color:var(--bg); padding:10px 16px; border-radius:8px; font-size:.92rem; max-width:min(92vw, 520px); box-shadow:0 6px 20px rgba(0,0,0,.25)}
@@ -458,7 +461,8 @@ git push -u origin main</pre>
       <li>Si cambias de computadora o borras los datos del navegador, vuelve a pegar la llave. Tu avance no se pierde: está guardado en GitHub.</li>
     </ol>
     <div class="avform">
-      <div class="avok" id="avconectado" hidden><span><b>✓ Conectado.</b> Cada casilla que marcas se guarda en GitHub.</span><button type="button" class="small" id="avquitar">Desconectar</button></div>
+      <div class="avok" id="avconectado" hidden><span><b>✓ Conectado.</b> <span id="avtexto">Cada casilla que marcas se guarda en GitHub.</span></span><button type="button" class="small" id="avquitar">Desconectar</button>
+        <label class="avsolo"><input type="checkbox" id="avsolo"> Solo lectura en este navegador (para el mentor: ves el avance sin poder cambiarlo)</label></div>
       <div id="avnuevo">
         <label for="avtoken" class="sub">Llave que te dio tu mentor</label>
         <div class="avrow"><input id="avtoken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"><button type="button" class="btnp" id="avconectar">Conectar</button></div>
@@ -605,7 +609,7 @@ git push -u origin main</pre>
       <li>En <b>Permissions → Repository permissions</b>, busca <b>Contents</b> y elige <b>Read and write</b>. No actives nada más.</li>
       <li>Toca <b>Generate token</b> y copia el texto que empieza con <code>github_pat_</code>. GitHub lo muestra una sola vez.</li>
       <li>Mándaselo a Ronald por mensaje privado. Él lo pega en la pantalla <b>GitHub</b> del plan, en "Conecta tu avance".</li>
-      <li>Pégalo también tú en tu navegador para ver su avance en la página, con todo marcado como lo tiene él.</li>
+      <li>Pégalo también tú en tu navegador para ver su avance en la página, con todo marcado como lo tiene él. Después activa <b>Solo lectura en este navegador</b>, en el recuadro "Conectado", para no cambiar su avance por error. La página se pone al día sola cada minuto y cada vez que vuelves a la pestaña.</li>
     </ol>
     <p><b>Para seguirlo:</b> abre el plan con la llave conectada, o mira el historial en <a href="https://github.com/gcruzz/IT-Programming/commits/avance" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/commits/avance</a>: cada marca es un commit con fecha y hora, por ejemplo "Marca: Semana 5".</p>
     <p class="muted">La llave puede escribir cualquier archivo de <code>IT-Programming</code>, no solo el avance: GitHub no permite limitarla a un archivo. Si se pierde o termina la mentoría, bórrala en <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">github.com/settings/personal-access-tokens</a> y crea otra.</p>
@@ -4293,8 +4297,15 @@ var PHASES = [
   var AV = { api: 'https://api.github.com/repos/gcruzz/IT-Programming/contents/avance.json', rama: 'avance', clave: 'ruta-ronald-llave' };
   var avance = { marcadas: {} }, avSha = null, pendientes = {}, guardarTimer = null, guardando = false;
   function llave(){ try { return localStorage.getItem(AV.clave) || ''; } catch(e) { return ''; } }
+  function soloLectura(){ try { return localStorage.getItem('ruta-ronald-solo-lectura') === '1'; } catch(e) { return false; } }
+  function aplicarModo(){
+    var on = soloLectura();
+    document.body.classList.toggle('solo-lectura', on);
+    var c = document.getElementById('avsolo'); if (c) c.checked = on;
+    var t = document.getElementById('avtexto'); if (t) t.textContent = on ? 'Modo solo lectura: ves el avance, pero las casillas no se pueden cambiar.' : 'Cada casilla que marcas se guarda en GitHub.';
+  }
   function estadoAvance(texto, tipo){
-    var el = document.getElementById('avstate'); if (el) { el.textContent = texto; el.className = 'where avstate ' + (tipo || ''); }
+    var el = document.getElementById('avstate'); if (el) { el.textContent = (tipo === 'ok' && soloLectura() ? 'Solo lectura · ' : '') + texto; el.className = 'where avstate ' + (tipo || ''); }
     var conectado = tipo === 'ok' && !!llave();
     var m = document.getElementById('avmsg'); if (m) m.textContent = conectado ? '' : texto;
     var c = document.getElementById('avconectado'), n = document.getElementById('avnuevo'), b = document.getElementById('avconectar');
@@ -4334,16 +4345,27 @@ var PHASES = [
     if (e.status === 403 || e.status === 404) return 'La llave no tiene permiso: pídele a tu mentor que la revise';
     return 'Sin conexión con GitHub: revisa internet y recarga';
   }
-  function cargar(){
+  function cargar(silencioso){
     if (!llave()) { estadoAvance('Avance sin conectar', 'off'); pintar(); return Promise.resolve(false); }
-    estadoAvance('Cargando avance…');
+    if (!silencioso) estadoAvance('Cargando avance…');
     return api('GET').then(function(d){
+      if (silencioso && (guardando || Object.keys(pendientes).length)) return true;   // no pisar cambios sin guardar
+      var cambio = d.sha !== avSha;
       avSha = d.sha;
       try { avance = JSON.parse(unb64(d.content)); } catch(e) { avance = { marcadas: {} }; }
       if (!avance.marcadas) avance.marcadas = {};
-      pintar(); estadoAvance('Avance al día ✓', 'ok'); return true;
-    })['catch'](function(e){ estadoAvance(motivo(e), 'err'); return false; });
+      if (cambio || !silencioso) pintar();
+      if (!silencioso || cambio) estadoAvance('Avance al día ✓', 'ok');
+      return true;
+    })['catch'](function(e){ if (!silencioso) estadoAvance(motivo(e), 'err'); return false; });
   }
+  // Puesta al día: al volver a la pestaña y cada 60 s mientras está visible
+  function ponerAlDia(){
+    if (document.hidden || !llave() || guardando || Object.keys(pendientes).length) return;
+    cargar(true);
+  }
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) ponerAlDia(); });
+  setInterval(ponerAlDia, 60000);
   function guardar(){
     if (guardando) { clearTimeout(guardarTimer); guardarTimer = setTimeout(guardar, 800); return; }
     var lote = pendientes, ks = Object.keys(lote);
@@ -4376,6 +4398,11 @@ var PHASES = [
     if (!llave()) {
       b.checked = !b.checked;
       aviso('Primero conecta tu avance: en la pantalla GitHub, pega la llave que te dio tu mentor.');
+      return;
+    }
+    if (soloLectura()) {
+      b.checked = !b.checked;
+      aviso('Modo solo lectura: en este navegador no se cambia el avance. Desactívalo en la pantalla GitHub si quieres marcar.');
       return;
     }
     pendientes[b.getAttribute('data-key')] = { on: b.checked, txt: textoDe(b) };
@@ -4416,6 +4443,13 @@ var PHASES = [
   go(start, false);
 
   ponerClaves();
+  aplicarModo();
+  document.getElementById('avsolo').addEventListener('change', function(){
+    try { if (this.checked) localStorage.setItem('ruta-ronald-solo-lectura', '1'); else localStorage.removeItem('ruta-ronald-solo-lectura'); } catch(e) {}
+    aplicarModo();
+    estadoAvance('Avance al día ✓', 'ok');
+    aviso(this.checked ? 'Modo solo lectura activado en este navegador.' : 'Modo solo lectura desactivado: las casillas vuelven a guardarse.');
+  });
   document.getElementById('avconectar').addEventListener('click', function(){
     if (this.disabled) return;
     var v = document.getElementById('avtoken').value.replace(/\s/g, '');
