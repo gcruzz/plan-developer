@@ -115,6 +115,10 @@ td.mono{white-space:nowrap; font-variant-numeric:tabular-nums}
 .checks input{margin-top:5px; width:18px; height:18px; accent-color:var(--accent); flex:none}
 .checks input:checked + span{color:var(--muted); text-decoration:line-through}
 .meeting{border-left:3px solid var(--mark); padding-left:12px}
+.ingles, .trabajo{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px 20px; display:flex; flex-direction:column; gap:10px; min-width:0; overflow-wrap:anywhere}
+.ingles .meta-en{font-weight:700}
+.palabras{display:flex; flex-wrap:wrap; gap:6px}
+.palabras code{font-family:var(--mono); font-size:.8rem; background:var(--code-bg); padding:2px 7px; border-radius:4px}
 
 details.detail{border-top:1px solid var(--line); padding-top:10px}
 details.detail summary{cursor:pointer; font-weight:700; color:var(--accent); list-style:none; display:flex; align-items:center; gap:8px}
@@ -252,6 +256,7 @@ button.small:hover{color:var(--fg)}
     <p>Hoy la IA genera código en segundos. Eso no hace menos valioso aprender a programar; lo hace más valioso. Quien sabe construir software a mano entiende por qué algo funciona, detecta cuando la IA se equivoca y sabe qué pedirle. Quien no, copia y pega hasta que algo se rompe y no sabe por qué. <mark>Este plan te forma para ser el primero.</mark></p>
     <p>No te compares con tus compañeros. Todos los que "saben más" empezaron sin saber nada. Tu única medida es tu yo de hace un mes, y para eso vas a tener tu bitácora en GitHub: en cada reunión vamos a mirar hacia atrás y ver cuánto construiste.</p>
     <p>Son unos dos años a 8–10 horas por semana. Si una fase te toma más, está bien. Lo único que no se negocia es la constancia.</p>
+    <p>Además, todo el plan lleva un <b>hilo de inglés</b>: 20 minutos al día desde la primera semana (pantalla <b>Inglés</b>). Y desde la fase 8 empiezas a <b>buscar trabajo</b>, sin esperar a terminar (pantalla <b>Buscar trabajo</b>).</p>
   </div>
   <div class="block">
     <h3>El mapa completo: cuatro niveles, quince fases</h3>
@@ -686,6 +691,7 @@ para que yo lo arregle:
         <tr><td>Mié · Jue</td><td>Avanzar el proyecto de la fase</td><td class="mono">1.5–2 h</td></tr>
         <tr><td>Vie</td><td>Terminar algo pequeño, hacer <code>push</code> y escribir la nota de la semana en tu bitácora</td><td class="mono">1–1.5 h</td></tr>
         <tr><td>Sáb · Dom</td><td>Descanso. Si quieres, experimenta sin presión</td><td class="mono">opcional</td></tr>
+        <tr><td>Lun a Vie</td><td>Inglés: 10 minutos de Duolingo y 10 del curso de inglés, más la meta de inglés de tu fase (pantalla <b>Inglés</b>). Va aparte de las horas del plan</td><td class="mono">20 min/día</td></tr>
       </tbody>
     </table></div>
     <p>Proporción: <mark>70% construyendo, 30% viendo cursos.</mark> Los cursos son para aprender; los proyectos demuestran que aprendiste.</p>
@@ -706,6 +712,7 @@ para que yo lo arregle:
         <tr><td>Cursos vistos (casilla junto a cada curso)</td><td class="mono">10%</td></tr>
       </tbody>
     </table></div>
+    <p>La casilla "Cumplí la meta de inglés de esta fase" también se guarda, pero no cambia el porcentaje: el inglés tiene su propio ritmo.</p>
     <p>Una fase queda <b>Completada</b> cuando terminas su proyecto de prueba y al menos uno de los propuestos. Cada marca se guarda en el repositorio de tu mentor en el momento en que la haces; para eso, conecta tu avance una vez (pantalla <b>GitHub</b>).</p>
   </div>
   <div class="block">
@@ -722,7 +729,231 @@ para que yo lo arregle:
   </div>
 </section>
 
+<section class="step" data-label="Inglés" data-id="ingles">
+  <div class="block">
+    <span class="eyebrow">Todo el plan · 20 minutos al día</span>
+    <h2>El hilo de inglés</h2>
+    <p>Este plan está en español, y para aprender a programar es lo mejor. Pero para conseguir trabajo, el inglés es probablemente lo que más pesa: casi todo el trabajo remoto lo pide, la documentación y los mensajes de error están en inglés, y la IA responde mejor en inglés. Por eso lo vas a aprender en paralelo, de a poco, desde la primera semana.</p>
+  </div>
+  <div class="card">
+    <h3>No necesitas talento, necesitas 20 minutos al día</h3>
+    <p>Nadie aprende inglés en un mes. Se aprende como se aprende a programar: un poco todos los días, durante mucho tiempo. <mark>20 minutos al día, de lunes a viernes, durante dos años, son más de 170 horas.</mark> Con eso llegas a leer documentación sin problemas y a mantener una conversación sencilla en una entrevista.</p>
+    <p>Estos 20 minutos van aparte de las horas de programación. Si un día no puedes, no pasa nada: sigue al día siguiente.</p>
+  </div>
+  <div class="block">
+    <h3>Tu rutina diaria</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Qué</th><th>Tiempo</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://www.duolingo.com/course/en/es/aprender-ingles" target="_blank" rel="noopener">Duolingo</a>, curso de inglés para hispanohablantes (gratis, en el celular o la computadora)</td><td class="mono">10 min</td></tr>
+        <tr><td>Una lección del curso de inglés en YouTube (lista de abajo), en orden, con un cuaderno al lado</td><td class="mono">10 min</td></tr>
+        <tr><td>Una vez por semana: la <b>meta de inglés de tu fase</b> (cada fase tiene su recuadro "Inglés de la fase" con qué hacer y qué palabras aprender)</td><td class="mono">en tus horas</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="block">
+    <h3>Las cuatro etapas</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Fases</th><th>Qué logras</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">0–4</td><td><b>La base.</b> Vocabulario básico, los botones de GitHub y los mensajes de error de Python sin traductor. Tus commits pasan a inglés.</td></tr>
+        <tr><td class="mono">5–8</td><td><b>Leer.</b> Documentación (MDN, PostgreSQL, FastAPI) y respuestas de Stack Overflow, con el traductor solo de apoyo. Tus README van en inglés.</td></tr>
+        <tr><td class="mono">9–11</td><td><b>Escuchar y empezar a hablar.</b> Videos de programación en inglés con subtítulos en inglés. Leer en voz alta y explicar tu trabajo en frases sencillas.</td></tr>
+        <tr><td class="mono">12–14</td><td><b>Conversar.</b> Prompts y especificaciones en inglés, tu presentación de 1 minuto y entrevistas de práctica en inglés.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="block">
+    <h3>Cursos gratis, explicados en español</h3>
+    <p>En todos, el profesor explica en español y enseña inglés. Se verificó que existen y su fecha; en los de Francisco Ochoa y midudev, YouTube confirma además que el audio original es español, y en los demás se ve en los títulos y las descripciones. Nadie los vio completos: si un profesor no te gusta, cambia al otro.</p>
+    <span class="sub">El curso principal · en orden, una lección por día</span>
+    <ul class="courses">
+      <li><span class="year">2017–19</span><span><a href="https://www.youtube.com/playlist?list=PLgrNDDl9MxYkpLbU68OipW1ygi_XfrQRj" target="_blank" rel="noopener">Francisco Ochoa Inglés Fácil · Nivel principiantes A1 (22 videos de ~10 min)</a><span class="osnote">Empieza aquí. Sigue el número de lección del título: en la lista hay alguna fuera de orden. Las guías para descargar están en la descripción de cada video.</span></span></li>
+      <li><span class="year">2017–19</span><span><a href="https://www.youtube.com/playlist?list=PLgrNDDl9MxYkPSinB98ud2StnaPNxtIXu" target="_blank" rel="noopener">Francisco Ochoa Inglés Fácil · Básico, de A1 a A2 (48 videos de ~12 min)</a><span class="osnote">Cuando termines el A1. Más o menos durante el primer año.</span></span></li>
+      <li><span class="year">2018</span><span><a href="https://www.youtube.com/playlist?list=PLgrNDDl9MxYn76Sre-dsKybknKHHdwH1Z" target="_blank" rel="noopener">Francisco Ochoa Inglés Fácil · Pre-intermedio B1 (22 videos de ~20 min)</a><span class="osnote">El segundo año. Con este nivel ya lees documentación con poca ayuda.</span></span></li>
+    </ul>
+    <span class="sub">Si prefieres otro profesor</span>
+    <ul class="courses">
+      <li><span class="year">2023–26</span><span><a href="https://www.youtube.com/playlist?list=PLtdv1ldivvswRZoQOqo1whVkIQXddKKh1" target="_blank" rel="noopener">Inglés Kike Rodríguez · Curso de inglés gratis desde cero con ejercicios (60 lecciones de 11 a 23 min)</a><span class="osnote">Una sola lista numerada y reciente. También sirve de repaso.</span></span></li>
+      <li><span class="year">2019–26</span><span><a href="https://www.youtube.com/playlist?list=PLFXdMUVx0U6h4thTVZJJZzkONEpxw_UA_" target="_blank" rel="noopener">Inglés con el Teacher Bocarando · Curso básico de inglés para principiantes desde cero (17 a 25 min)</a><span class="osnote">Muy popular. A mitad de la lista se mezclan videos de vocabulario suelto.</span></span></li>
+    </ul>
+    <span class="sub">Inglés para programadores · desde la fase 6 más o menos, cuando ya tengas nivel A2</span>
+    <ul class="courses">
+      <li><span class="year">2025</span><span><a href="https://www.youtube.com/watch?v=cEhdna0r_h0" target="_blank" rel="noopener">midulive · Inglés para Devs, con Darwinglish, en la miduConf 2025 (26 min)</a><span class="osnote">Míralo cuando quieras: explica qué inglés necesita un desarrollador. Buen video para empezar.</span></span></li>
+      <li><span class="year">2022</span><span><a href="https://www.youtube.com/watch?v=ClZlXdYYrbI" target="_blank" rel="noopener">Platzi · Vocabulario en inglés para Developers (18 min)</a><span class="osnote">Vocabulario técnico básico. La descripción promociona cursos de pago: no hace falta comprar nada.</span></span></li>
+      <li><span class="year">2025–26</span><span><a href="https://www.youtube.com/playlist?list=PLkSw1W3qZu3MjUOmYgvN1J4cg1I64G1kS" target="_blank" rel="noopener">Darwinglish · Podcast Inglés para Devs (episodios de 6 a 14 min)</a><span class="osnote">Analiza conversaciones reales de trabajo: pull requests, code review, reuniones diarias. Ideal desde la fase 9.</span></span></li>
+    </ul>
+    <p class="muted">Muchos canales de inglés venden cursos o "métodos" de pago. No necesitas comprar nada: con estos videos gratis, Duolingo y la práctica de cada fase es suficiente.</p>
+  </div>
+  <div class="block">
+    <h3>Tu archivo ingles.md</h3>
+    <p>Crea <code>ingles.md</code> en tu repo <code>bitacora</code>. Cada palabra o frase nueva que encuentres programando va ahí, con su traducción y dónde la viste. Repásalo antes de cada reunión.</p>
+    <div class="codeblock">
+      <div class="lbl"><span>bitacora/ingles.md</span><button type="button" class="small" data-copy="tplIngles">Copiar</button></div>
+<pre id="tplIngles"># Mi inglés de programación
+
+| Palabra o frase | Qué significa | Dónde la vi |
+|-----------------|---------------|-------------|
+| Commit changes | Guardar los cambios | Botón de GitHub, fase 0 |
+| NameError: name 'x' is not defined | El nombre 'x' no está definido (no lo creé antes de usarlo) | Python, fase 2 |
+| deprecated | Obsoleto: todavía funciona, pero no lo uses | MDN, fase 5 |</pre>
+    </div>
+  </div>
+  <div class="block">
+    <h3>Herramientas que ayudan</h3>
+    <ul class="list">
+      <li><b>El traductor del navegador</b> (clic derecho → Traducir a español, en Chrome y en Edge): úsalo de apoyo. Lee primero en inglés, y traduce solo lo que no entiendas.</li>
+      <li><b>La IA como profesor de inglés:</b> para el inglés sí puedes usarla desde el principio. Pídele que te explique una frase o que corrija un texto que escribiste tú, y que te diga por qué. Desde la fase 11, practica conversación con el modo de voz.</li>
+      <li><b><a href="https://apps.ankiweb.net/" target="_blank" rel="noopener">Anki</a></b> (gratis en Windows y Android): tarjetas de memoria para repasar las palabras de tu ingles.md. Opcional, desde el segundo año.</li>
+      <li><b>Conocer tu nivel:</b> una vez al año haz el examen gratis de <a href="https://www.efset.org/es/" target="_blank" rel="noopener">EF SET</a> (unos 50 minutos). Pon el resultado en tu bitácora: verás cuánto avanzaste.</li>
+    </ul>
+  </div>
+</section>
+
 <!-- Las 15 fases se insertan aquí desde el script -->
+
+<section class="step" data-label="Buscar trabajo" data-id="trabajo">
+  <div class="block">
+    <span class="eyebrow">Desde la fase 8 · semana 45 en adelante</span>
+    <h2>Buscar trabajo</h2>
+    <p>No esperes a terminar el plan para buscar trabajo. Desde la fase 8 ya tienes proyectos que mostrar, y desde la fase 10 ya puedes postular a prácticas y puestos junior. Buscar trabajo también se aprende, y se aprende haciéndolo.</p>
+  </div>
+  <div class="card">
+    <h3>Antes de empezar, la verdad</h3>
+    <p>Hoy cuesta conseguir el primer trabajo en programación. Hay muchos candidatos para pocos puestos junior, y muchas empresas contratan menos juniors porque la IA hace parte de ese trabajo. <mark>Si te rechazan o no te responden, no es una señal de que no sirves: le pasa a casi todos.</mark></p>
+    <p>Lo que más te ayuda, en este orden: <b>proyectos con usuarios reales</b>, una app tuya funcionando en producción, el <b>inglés</b>, las <b>personas que conoces</b> en comunidades, y la constancia para seguir postulando. Tu primer trabajo probablemente no saldrá de una oferta en internet, sino de alguien que vio lo que construiste.</p>
+    <p>Mide lo que depende de ti: cuántas postulaciones enviaste, cuántas personas conociste y cuántos proyectos mejoraste esta semana. No midas cuántas te respondieron.</p>
+  </div>
+  <div class="block">
+    <h3>Qué hacer en cada fase</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Fase</th><th>Qué haces para el trabajo</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">8</td><td>Perfil de LinkedIn. Tu primer cliente real: un negocio o una persona cercana que necesite algo pequeño.</td></tr>
+        <tr><td class="mono">9</td><td>Tu CV de una página. Tu primera contribución open source. Únete a una o dos comunidades.</td></tr>
+        <tr><td class="mono">10</td><td>Empiezas a postular a prácticas y puestos junior: 3 o 4 por semana, con tu tabla de postulaciones.</td></tr>
+        <tr><td class="mono">11–13</td><td>Sigues postulando. Entrevista de práctica con el mentor cada dos semanas. Más trabajos pequeños si salen.</td></tr>
+        <tr><td class="mono">14</td><td>La búsqueda es parte de la fase: 5 o más postulaciones por semana, entrevistas y contactos.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted">Cada fase de la 8 en adelante tiene un recuadro "Buscar trabajo · en esta fase" con estas tareas.</p>
+  </div>
+  <div class="block">
+    <h3>1. Tu primer cliente real</h3>
+    <p>Un proyecto que alguien usa de verdad vale más que diez proyectos de práctica. Busca cerca de ti: un negocio del barrio, un familiar con un emprendimiento, una iglesia, un club deportivo, una ONG. Algo pequeño: una página con su información, un formulario de pedidos, una lista de citas, un catálogo.</p>
+    <ol class="steps">
+      <li><b>Escucha antes de proponer.</b> Pregúntale qué le quita tiempo hoy. A veces lo que necesita es más simple de lo que crees.</li>
+      <li><b>Acuerden por escrito</b>, aunque sea un mensaje: qué vas a hacer, qué no, y para cuándo. Si es gratis, pide a cambio una recomendación y permiso para mostrarlo en tu portafolio.</li>
+      <li><b>Entrega algo pequeño rápido</b> (en 2 o 3 semanas) y mejóralo después con lo que te diga.</li>
+      <li><b>Cuéntalo en tu portafolio</b> como un caso: el problema, qué construiste, qué cambió para el cliente y su frase de recomendación.</li>
+    </ol>
+    <div class="codeblock">
+      <div class="lbl"><span>Mensaje para ofrecer tu ayuda</span><button type="button" class="small" data-copy="tplCliente">Copiar</button></div>
+<pre id="tplCliente">Hola, [nombre]. Estoy estudiando desarrollo de software y estoy
+armando proyectos reales para mi portafolio.
+
+Me gustaría ayudarte con [una página para tu negocio / un sistema
+para anotar tus citas / ...], sin costo. A cambio te pediría
+permiso para mostrarlo como ejemplo de mi trabajo y, si te gusta,
+una frase de recomendación.
+
+¿Te parece si conversamos 15 minutos esta semana para ver
+qué te sería más útil?</pre>
+    </div>
+  </div>
+  <div class="block">
+    <h3>2. Tu CV de una página</h3>
+    <p>Una sola página, sin foto, sin barras de "nivel de habilidad". Los proyectos van arriba, porque es lo que más vale cuando no tienes experiencia laboral. Escríbelo en español; cuando tu inglés lo permita, haz también una versión en inglés.</p>
+    <div class="codeblock">
+      <div class="lbl"><span>Plantilla de CV</span><button type="button" class="small" data-copy="tplCV">Copiar</button></div>
+<pre id="tplCV">TU NOMBRE
+Desarrollador de software junior · Ciudad, País
+correo@ejemplo.com · tu-usuario.github.io · github.com/tu-usuario · linkedin.com/in/tu-usuario
+
+PERFIL
+Dos líneas: qué sabes hacer y qué buscas. Ejemplo: Desarrollador
+junior que construye aplicaciones web completas con Python, FastAPI,
+PostgreSQL y React, probadas y desplegadas en producción. Busco mi
+primer puesto en un equipo donde seguir aprendiendo.
+
+PROYECTOS
+Nombre del proyecto · link a la demo · link al código
+- Qué hace, en una línea, y para quién.
+- Un resultado concreto: "lo usa la peluquería de Rosa para 40 citas
+  por semana" o "despliegue automático con QA y producción".
+- Tecnologías: Python, FastAPI, PostgreSQL, Docker, GitHub Actions.
+(2 a 4 proyectos, el más fuerte primero)
+
+EXPERIENCIA
+Proyectos para clientes, prácticas, open source o trabajos que no
+sean de programación (también cuentan: muestran responsabilidad).
+
+HABILIDADES
+Lenguajes: Python, JavaScript, TypeScript, SQL
+Herramientas: Git, Docker, GitHub Actions, Linux
+Idiomas: Español (nativo), Inglés (tu nivel real: básico, intermedio...)
+
+EDUCACIÓN
+Lo que tengas, y: "Plan de estudio guiado de desarrollo de software
+(2 años, con mentor), 15 fases, de fundamentos a producción e IA."</pre>
+    </div>
+    <p class="muted">Sé honesto con tu nivel de inglés y con lo que sabes: en la entrevista te lo van a preguntar.</p>
+  </div>
+  <div class="block">
+    <h3>3. Tu perfil de LinkedIn</h3>
+    <ul class="list">
+      <li><b>Foto clara y titular útil</b>: "Desarrollador junior · Python, React, SQL", no "Estudiante buscando oportunidades".</li>
+      <li><b>Acerca de</b> (About): las mismas dos líneas de tu CV y el link a tu portafolio.</li>
+      <li><b>Proyectos</b> (Projects) y <b>Destacado</b> (Featured): tus 2 o 3 mejores, con link.</li>
+      <li><b>Conecta</b> con la gente que conoces en comunidades y eventos, con un mensaje corto de por qué.</li>
+      <li><b>Publica de vez en cuando</b> lo que construiste o aprendiste, en pocas líneas y con una captura. No hace falta ser famoso: quien te busque verá que eres constante.</li>
+    </ul>
+  </div>
+  <div class="block">
+    <h3>4. Dónde buscar</h3>
+    <ul class="list">
+      <li><b>Tu red primero</b>: el mentor, tus clientes, la gente de tus comunidades y eventos. Diles que estás buscando y qué sabes hacer.</li>
+      <li><b>Comunidades en español</b>: los Discord de midudev y MoureDev tienen canales de empleo; también los grupos de programación de tu ciudad.</li>
+      <li><b>Portales de empleo</b>: <a href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener">LinkedIn Empleos</a>, <a href="https://www.getonbrd.com/" target="_blank" rel="noopener">Get on Board</a> (empleos de tecnología en Latinoamérica) y los portales grandes de tu país, como Computrabajo.</li>
+      <li><b>Prácticas y programas de entrada</b> de empresas grandes y bancos de tu país: muchos abren convocatorias para juniors una o dos veces al año.</li>
+      <li><b>Trabajos remotos</b> para empresas de afuera: pagan mejor, pero casi siempre piden inglés para hablar. Es tu meta para cuando tu inglés llegue.</li>
+    </ul>
+  </div>
+  <div class="block">
+    <h3>5. Tu tabla de postulaciones</h3>
+    <p>Llévala en tu bitácora y revísala con el mentor en cada reunión. Así ves tu constancia, y al cabo de unos meses ves qué tipo de puesto te responde más.</p>
+    <div class="codeblock">
+      <div class="lbl"><span>bitacora/postulaciones.md</span><button type="button" class="small" data-copy="tplPost">Copiar</button></div>
+<pre id="tplPost">| Fecha | Empresa | Puesto | Dónde la vi | Estado | Qué aprendí |
+|-------|---------|--------|-------------|--------|-------------|
+| 12/03 | Ejemplo SA | Desarrollador junior | Get on Board | Envié CV | Pedían Docker: lo tengo, lo puse más arriba en el CV |
+| 15/03 | Tienda X | Prácticas web | Discord midudev | Entrevista 20/03 | Preguntaron SQL con JOIN |</pre>
+    </div>
+    <p>Para cada postulación, ajusta las dos líneas del perfil de tu CV a lo que pide la oferta y pon primero el proyecto que más se parece a lo que hacen. Tres postulaciones pensadas valen más que treinta iguales.</p>
+  </div>
+  <div class="block">
+    <h3>6. Las entrevistas</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Etapa</th><th>Qué es</th><th>Cómo prepararte</th></tr></thead>
+      <tbody>
+        <tr><td><b>Conversación inicial</b></td><td>Alguien de recursos humanos te pregunta por ti y por lo que buscas.</td><td>Tu presentación de 1 minuto. Por qué esa empresa. Tu nivel real de inglés.</td></tr>
+        <tr><td><b>Técnica</b></td><td>Resuelves un ejercicio en vivo o respondes preguntas: código, SQL, cómo funciona la web.</td><td>Ejercicios de la fase 3 y consultas de la fase 6. Piensa en voz alta: importa cómo razonas, no solo el resultado.</td></tr>
+        <tr><td><b>Ejercicio para la casa</b></td><td>Te piden construir algo pequeño en unos días.</td><td>Hazlo como tus proyectos: README claro, tests, commits ordenados. Explica qué decisiones tomaste.</td></tr>
+        <tr><td><b>Sobre tus proyectos</b></td><td>Te piden explicar algo que construiste y por qué lo hiciste así.</td><td>Es como el "explícame esto" de las reuniones. Ten listo qué cambiarías hoy.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Preguntas que casi siempre aparecen: <i>Háblame de ti. Cuéntame de un proyecto del que estés orgulloso. ¿Cuál fue el error más difícil que resolviste? ¿Cómo usas la IA cuando programas? ¿Qué estás aprendiendo ahora?</i> Escribe tus respuestas en tu bitácora y practícalas en voz alta con el mentor.</p>
+    <p>Cuando no sepas algo, dilo y cuenta cómo lo averiguarías. Eso cuenta a tu favor.</p>
+  </div>
+  <div class="card">
+    <h3>Para el mentor</h3>
+    <ul class="list">
+      <li>Revisa su CV y su LinkedIn antes de que empiece a postular (fase 9).</li>
+      <li>Desde la fase 11, haz una entrevista de práctica cada dos semanas: 15 minutos de una reunión.</li>
+      <li>Si puedes, preséntalo a gente de tu red. Una recomendación tuya pesa más que cualquier portal.</li>
+    </ul>
+  </div>
+</section>
 
 <section class="step" data-label="Después" data-id="despues">
   <div class="block">
@@ -732,8 +963,8 @@ para que yo lo arregle:
     <ul class="list">
       <li>Elige una dirección según lo que más disfrutaste: web, backend, datos o productos con IA, y profundiza ahí.</li>
       <li>Participa en hackathons y comunidades de programación de tu ciudad o en línea. Ahí está la gente con la que vas a trabajar.</li>
-      <li>Busca prácticas o trabajos pequeños de freelance usando tu portafolio y tus proyectos como prueba.</li>
-      <li>Empieza a aprender inglés técnico. Mucha documentación y muchos equipos trabajan en inglés, y te abre más oportunidades.</li>
+      <li>Si todavía no tienes trabajo, sigue la pantalla <b>Buscar trabajo</b>: constancia, proyectos para clientes reales y comunidad. Cada mes que sigues construyendo tu portafolio mejora.</li>
+      <li>No dejes el inglés: tus 20 minutos diarios, ahora con foco en conversación. Es lo que más oportunidades te abre, sobre todo los trabajos remotos.</li>
       <li>Ahora te toca a ti: enséñale a alguien que esté empezando. Explicar es la mejor forma de dominar lo que sabes.</li>
     </ul>
   </div>
@@ -3747,6 +3978,31 @@ DETAIL[14] = {
   ]
 };
 
+// Hilo de inglés (en) y búsqueda de trabajo (job) por fase. Lo genera gen-ingles.py; se puede editar a mano.
+// Se carga después de fases-*.js, así que agrega campos a DETAIL[n].
+DETAIL[0].en = {"meta": "Empezar el hábito y perderle el miedo a los botones de GitHub.", "hacer": ["Crea tu cuenta en Duolingo (curso de inglés para hispanohablantes) y haz 10 minutos al día, todos los días.", "Los otros 10 minutos: la primera lección del curso de inglés desde cero de la pantalla Inglés.", "Cada botón de GitHub que uses (Commit changes, Pull request, Settings), anótalo en un archivo ingles.md de tu bitácora con su traducción."], "palabras": ["commit", "push", "pull", "branch", "merge", "repository", "settings", "changes"]};
+DETAIL[1].en = {"meta": "Leer los nombres de las partes de la computadora y de los menús de Windows.", "hacer": ["Sigue con tus 20 minutos diarios (Duolingo + curso).", "Cambia a inglés el idioma de un programa que uses poco (por ejemplo VS Code) solo por una semana, para ver que ya entiendes los menús. Si te frustra, vuelve a español."], "palabras": ["file", "folder", "memory", "storage", "process", "run", "install", "path"]};
+DETAIL[2].en = {"meta": "Entender los mensajes de error de Python sin traductor.", "hacer": ["Sigue con tus 20 minutos diarios.", "Cada error nuevo que te salga en Python (NameError, TypeError, IndexError…), cópialo en ingles.md y escribe qué significa cada palabra.", "Nombra tus variables y funciones en español o en inglés, pero no mezcles: elige uno y úsalo en todo el proyecto."], "palabras": ["error", "not defined", "expected", "index out of range", "invalid syntax", "return", "loop", "string"]};
+DETAIL[3].en = {"meta": "Leer enunciados cortos de ejercicios en inglés con ayuda del traductor.", "hacer": ["Sigue con tus 20 minutos diarios.", "Una vez por semana, abre un ejercicio en inglés (por ejemplo en Exercism o LeetCode) y léelo primero sin traductor. Subraya lo que no entiendes y solo después tradúcelo."], "palabras": ["input", "output", "array", "sorted", "find", "given", "return the", "at least"]};
+DETAIL[4].en = {"meta": "Escribir tus mensajes de commit en inglés.", "hacer": ["Sigue con tus 20 minutos diarios.", "Desde ahora, tus commits van en inglés, cortos y en imperativo: Add login form, Fix total calculation, Rename user class.", "Guarda en ingles.md los 15 verbos que más usas en tus commits."], "palabras": ["add", "fix", "remove", "update", "rename", "refactor", "class", "method"]};
+DETAIL[5].en = {"meta": "Usar la documentación de MDN en inglés, con el traductor del navegador como apoyo.", "hacer": ["Sigue con tus 20 minutos diarios.", "Busca en MDN (developer.mozilla.org) cada etiqueta o función nueva. Lee primero el resumen en inglés; si no lo entiendes, cambia la página a español con el selector de idioma y compara.", "Escribe el README de tu proyecto de prueba en español y una versión corta en inglés (3 o 4 líneas) debajo."], "palabras": ["element", "attribute", "event", "listener", "fetch", "response", "request", "deprecated"]};
+DETAIL[6].en = {"meta": "Leer SQL como si fuera inglés: las palabras clave son frases.", "hacer": ["Sigue con tus 20 minutos diarios.", "Lee en voz alta tus consultas como frases: SELECT name FROM users WHERE age > 18 = selecciona el nombre de los usuarios donde la edad es mayor que 18.", "Lee una página de la documentación oficial de PostgreSQL en inglés por semana."], "palabras": ["select", "where", "join", "group by", "constraint", "foreign key", "unique", "null"]};
+DETAIL[7].en = {"meta": "Leer la documentación de FastAPI y las respuestas de Stack Overflow en inglés.", "hacer": ["Sigue con tus 20 minutos diarios. Si ya terminaste el curso desde cero, pasa al de inglés intermedio.", "Cuando busques un error en Google, búscalo en inglés (copia el mensaje tal cual). Lee la pregunta y la respuesta aceptada en Stack Overflow antes de traducir.", "Tus issues y pull requests en GitHub: título en inglés, explicación en español si hace falta."], "palabras": ["endpoint", "request body", "status code", "dependency", "authentication", "token", "schema", "validation"]};
+DETAIL[8].en = {"meta": "Escribir todos tus README en inglés y empezar a escuchar inglés técnico.", "hacer": ["Sigue con tus 20 minutos diarios.", "Los README de tus proyectos nuevos van en inglés (puedes dejar una sección en español). Usa la IA solo para revisar tu texto, no para escribirlo.", "Una vez por semana, mira un video corto (5 a 10 minutos) de programación en inglés con subtítulos en inglés, no en español. Si es muy difícil, ponlo a 0.75x."], "palabras": ["component", "state", "props", "hook", "render", "type", "interface", "build"]};
+DETAIL[8].job = ["Arma tu perfil de LinkedIn en español con tus proyectos (la guía está en la pantalla Buscar trabajo).", "Tu app para un usuario real es tu mejor carta: pídele a esa persona una frase de recomendación para tu portafolio.", "Busca un negocio o una organización cerca de ti que necesite algo pequeño (una página, un formulario, una lista de citas). Ofrécete gratis o barato a cambio de experiencia real y una recomendación."];
+DETAIL[9].en = {"meta": "Leer código y discusiones de proyectos open source en inglés.", "hacer": ["Sigue con tus 20 minutos diarios.", "Para tu contribución open source, lee el CONTRIBUTING.md y los issues del proyecto en inglés, y escribe tu pull request en inglés.", "Empieza a hablar: 10 minutos a la semana leyendo en voz alta un README o una documentación en inglés. Grábate y escúchate."], "palabras": ["test", "assert", "fixture", "container", "image", "pipeline", "workflow", "contributing"]};
+DETAIL[9].job = ["Tu contribución open source va al portafolio y a LinkedIn: es prueba de que sabes trabajar en código ajeno.", "Únete a una o dos comunidades de programación en español (Discord de midudev, MoureDev, grupos de tu ciudad). Ayuda a quien empieza: también cuenta.", "Haz tu CV de una página (plantilla en la pantalla Buscar trabajo) y pídele al mentor que lo revise."];
+DETAIL[10].en = {"meta": "Entender los mensajes de despliegue, los logs y las alertas en inglés.", "hacer": ["Sigue con tus 20 minutos diarios.", "Cuando algo falle en producción, lee los logs completos en inglés antes de pedir ayuda. Escribe en ingles.md las frases que se repiten (connection refused, permission denied, out of memory…).", "Escribe tu checklist de QA y tu postmortem en español, y su resumen de 5 líneas en inglés."], "palabras": ["deploy", "rollback", "environment", "log", "health check", "permission denied", "timeout", "release"]};
+DETAIL[10].job = ["Desde aquí ya puedes postular a prácticas y trabajos junior. Postula a 3 o 4 por semana, sin esperar a sentirte listo.", "Lleva una tabla de postulaciones en tu bitácora (empresa, puesto, fecha, enlace, respuesta).", "Tu app en producción, con QA y despliegue automático, es lo que más te distingue de otros juniors: muéstrala primero."];
+DETAIL[11].en = {"meta": "Explicar en inglés, en voz alta, el diseño de un sistema sencillo.", "hacer": ["Sigue con tus 20 minutos diarios.", "Practica conversación: una vez por semana, explica en voz alta en inglés tu documento de diseño (2 minutos). Puedes usar la IA de voz como compañero de práctica: pídele que te haga preguntas sencillas y te corrija.", "Mira un video de diseño de sistemas en inglés con subtítulos en inglés."], "palabras": ["scale", "cache", "queue", "load balancer", "trade-off", "bottleneck", "latency", "throughput"]};
+DETAIL[11].job = ["Sigue postulando (3 o 4 por semana) y anota qué te preguntan en cada entrevista.", "Practica una entrevista técnica cada dos semanas con el mentor: un ejercicio de código, una pregunta de SQL y una de diseño sencillo.", "Sigue haciendo trabajos pequeños para clientes reales si te salen: valen como experiencia en tu CV."];
+DETAIL[12].en = {"meta": "Escribir prompts en inglés tan bien como en español.", "hacer": ["Sigue con tus 20 minutos diarios.", "Escribe tus especificaciones y tus archivos de instrucciones para la IA en inglés. Compara: pide lo mismo en español y en inglés y mira la diferencia.", "Sigue practicando conversación con la IA de voz, 15 minutos por semana."], "palabras": ["prompt", "context", "spec", "review", "edge case", "requirement", "agent", "tool"]};
+DETAIL[12].job = ["En las entrevistas te van a preguntar cómo usas la IA. Prepara un ejemplo real: qué le pediste, qué error encontraste en su código y cómo lo corregiste.", "Actualiza tu CV y LinkedIn con lo que hiciste en las fases 9 a 11."];
+DETAIL[13].en = {"meta": "Leer documentación de APIs de IA y artículos técnicos completos en inglés.", "hacer": ["Sigue con tus 20 minutos diarios.", "Lee la documentación de la API de IA que uses directamente en inglés.", "Escribe una entrada de blog o un README largo en inglés sobre tu producto con IA y pídele al mentor que lo lea."], "palabras": ["embedding", "retrieval", "model", "latency", "rate limit", "evaluation", "cost", "fallback"]};
+DETAIL[13].job = ["Tu producto con IA es un proyecto que muchas empresas quieren ver: ponlo primero en tu portafolio con un video corto de demo.", "Pide a 2 o 3 personas de tus comunidades o de tu red que lo prueben y te den su opinión."];
+DETAIL[14].en = {"meta": "Presentarte y hablar de tus proyectos en inglés en una entrevista.", "hacer": ["Sigue con tus 20 minutos diarios, ahora con foco en conversación.", "Prepara tu presentación de 1 minuto en inglés (quién eres, qué construiste, qué buscas) y repítela hasta decirla sin leer.", "Prepara respuestas en inglés a 5 preguntas típicas: Tell me about yourself, Tell me about a project you are proud of, What was a hard bug you fixed?, Why do you want this job?, What are you learning now?", "Haz al menos un simulacro de entrevista en inglés con el mentor o con la IA de voz."], "palabras": ["experience", "background", "challenge", "I built", "I learned", "team", "feedback", "salary"]};
+DETAIL[14].job = ["Esta fase es para conseguir trabajo: sigue la pantalla Buscar trabajo completa.", "Postula a 5 o más por semana, con tu CV ajustado a cada oferta.", "Pídele al mentor que te presente a gente de su red. Muchos primeros trabajos salen así."];
+
 </script>
 <script>
 var DETAIL = window.DETAIL || {};
@@ -4094,7 +4350,7 @@ var PHASES = [
   function li(arr){ return arr.map(function(t){ return '<li>' + esc(t) + '</li>'; }).join(''); }
 
   var container = document.getElementById('steps');
-  var after = container.querySelector('[data-id="despues"]');
+  var after = container.querySelector('[data-id="trabajo"]');
   PHASES.forEach(function(p){
     var sec = document.createElement('section');
     sec.className = 'step phase';
@@ -4162,6 +4418,12 @@ var PHASES = [
       D.concepts.map(function(c){ return '<div><dt>' + esc(c[0]) + '</dt><dd>' + esc(c[1]) + '</dd></div>'; }).join('') +
       '</dl></div></details></div>' : '';
 
+    var en = D.en;
+    var inglesHtml = en ? '<div class="ingles"><div class="subrow"><span class="sub">Inglés de la fase · 20 minutos al día</span><button type="button" class="small" data-goto="ingles">Ver los cursos de inglés</button></div>' +
+      '<p class="meta-en">Meta: ' + esc(en.meta) + '</p><ul class="topics">' + li(en.hacer) + '</ul>' +
+      '<span class="sub">Palabras de esta fase · anótalas en tu ingles.md</span><div class="palabras">' + en.palabras.map(function(w){ return '<code lang="en">' + esc(w) + '</code>'; }).join('') + '</div>' +
+      '<div class="checks"><label><input type="checkbox" id="' + pre + 'en" data-txt="Meta de inglés de la fase ' + p.n + '"><span>Cumplí la meta de inglés de esta fase</span></label></div></div>' : '';
+    var trabajoHtml = D.job ? '<div class="trabajo"><div class="subrow"><span class="sub">Buscar trabajo · en esta fase</span><button type="button" class="small" data-goto="trabajo">Ver la guía para buscar trabajo</button></div><ul class="topics">' + li(D.job) + '</ul></div>' : '';
     sec.innerHTML =
       '<div class="phase-head"><div class="dot">' + p.n + '</div><div>' +
         '<span class="eyebrow">' + esc(LEVELS[p.n] ? LEVELS[p.n] + ' · ' : '') + 'Fase ' + p.n + ' · ' + esc(p.when) + '</span>' +
@@ -4177,6 +4439,7 @@ var PHASES = [
       weeksHtml +
       mainHtml +
       '<div class="block"><span class="sub">Proyectos propuestos · elige al menos uno</span><div class="extras">' + extras + '</div></div>' +
+      inglesHtml + trabajoHtml +
       '<p class="meeting"><b>En la reunión:</b> ' + esc(p.meeting) + '</p>';
     container.insertBefore(sec, after);
   });
@@ -4350,6 +4613,7 @@ var PHASES = [
       Array.prototype.forEach.call(sec.querySelectorAll('.courses input'), function(b){ b.setAttribute('data-key', 'c' + n + ':' + b.getAttribute('data-txt')); });
       Array.prototype.forEach.call(sec.querySelectorAll('input[data-sem]'), function(b){ b.setAttribute('data-key', 'w:' + b.getAttribute('data-sem')); });
       Array.prototype.forEach.call(sec.querySelectorAll('.project.main input[data-txt]'), function(b){ b.setAttribute('data-key', 'p' + n + ':' + b.getAttribute('data-txt')); });
+      Array.prototype.forEach.call(sec.querySelectorAll('.ingles input[data-txt]'), function(b){ b.setAttribute('data-key', 'i' + n + ':' + b.getAttribute('data-txt')); });
       Array.prototype.forEach.call(sec.querySelectorAll('.extras > .project'), function(x){
         Array.prototype.forEach.call(x.querySelectorAll('input[data-txt]'), function(b){ b.setAttribute('data-key', 'x' + n + ':' + x.getAttribute('data-name') + ':' + b.getAttribute('data-txt')); });
       });
