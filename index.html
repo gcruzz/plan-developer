@@ -188,6 +188,9 @@ details.detail:not([open]) summary .opened{display:none}
 .avform{display:flex; flex-direction:column; gap:8px; padding-top:6px}
 .avrow{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
 #avtoken{flex:1 1 240px; min-width:0; font:inherit; font-family:var(--mono); font-size:.85rem; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg)}
+.avok{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 12px; padding:12px 14px; border-radius:8px; background:var(--accent-soft)}
+.avok b{color:var(--st-open)}
+.btnp[disabled]{opacity:.6; cursor:wait}
 .btnp{font:inherit; font-weight:700; padding:8px 16px; border-radius:6px; border:0; background:var(--accent); color:var(--accent-fg); cursor:pointer}
 .project.np{opacity:.6}
 .toast{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(20px + env(safe-area-inset-bottom, 0px)); z-index:20; background:var(--fg); color:var(--bg); padding:10px 16px; border-radius:8px; font-size:.92rem; max-width:min(92vw, 520px); box-shadow:0 6px 20px rgba(0,0,0,.25)}
@@ -455,8 +458,11 @@ git push -u origin main</pre>
       <li>Si cambias de computadora o borras los datos del navegador, vuelve a pegar la llave. Tu avance no se pierde: está guardado en GitHub.</li>
     </ol>
     <div class="avform">
-      <label for="avtoken" class="sub">Llave que te dio tu mentor</label>
-      <div class="avrow"><input id="avtoken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"><button type="button" class="btnp" id="avconectar">Conectar</button><button type="button" class="small" id="avquitar">Desconectar</button></div>
+      <div class="avok" id="avconectado" hidden><span><b>✓ Conectado.</b> Cada casilla que marcas se guarda en GitHub.</span><button type="button" class="small" id="avquitar">Desconectar</button></div>
+      <div id="avnuevo">
+        <label for="avtoken" class="sub">Llave que te dio tu mentor</label>
+        <div class="avrow"><input id="avtoken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"><button type="button" class="btnp" id="avconectar">Conectar</button></div>
+      </div>
       <p class="muted" id="avmsg"></p>
     </div>
   </div>
@@ -4289,7 +4295,12 @@ var PHASES = [
   function llave(){ try { return localStorage.getItem(AV.clave) || ''; } catch(e) { return ''; } }
   function estadoAvance(texto, tipo){
     var el = document.getElementById('avstate'); if (el) { el.textContent = texto; el.className = 'where avstate ' + (tipo || ''); }
-    var m = document.getElementById('avmsg'); if (m) m.textContent = texto;
+    var conectado = tipo === 'ok' && !!llave();
+    var m = document.getElementById('avmsg'); if (m) m.textContent = conectado ? '' : texto;
+    var c = document.getElementById('avconectado'), n = document.getElementById('avnuevo'), b = document.getElementById('avconectar');
+    if (c) c.hidden = !conectado;
+    if (n) n.hidden = conectado;
+    if (b) { b.disabled = !tipo && !!llave(); b.textContent = b.disabled ? 'Conectando…' : 'Conectar'; }
   }
   function b64(t){ return btoa(unescape(encodeURIComponent(t))); }
   function unb64(t){ return decodeURIComponent(escape(atob(String(t).replace(/\s/g, '')))); }
@@ -4406,15 +4417,25 @@ var PHASES = [
 
   ponerClaves();
   document.getElementById('avconectar').addEventListener('click', function(){
+    if (this.disabled) return;
     var v = document.getElementById('avtoken').value.replace(/\s/g, '');
     if (!v) { estadoAvance('Pega la llave primero', 'err'); return; }
     try { localStorage.setItem(AV.clave, v); } catch(e) { estadoAvance('Este navegador no deja guardar la llave', 'err'); return; }
     document.getElementById('avtoken').value = '';
     cargar().then(function(ok){ if (ok) aviso('¡Listo! Tu avance está conectado. Cada casilla que marques se guarda sola.'); });
   });
+  var quitarArmado = false, quitarTimer = null;
   document.getElementById('avquitar').addEventListener('click', function(){
+    var btn = this;
+    if (!quitarArmado) {
+      quitarArmado = true; btn.textContent = '¿Seguro? Toca otra vez';
+      quitarTimer = setTimeout(function(){ quitarArmado = false; btn.textContent = 'Desconectar'; }, 3500);
+      return;
+    }
+    clearTimeout(quitarTimer); quitarArmado = false; btn.textContent = 'Desconectar';
     try { localStorage.removeItem(AV.clave); } catch(e) {}
     avance = { marcadas: {} }; avSha = null; pintar(); estadoAvance('Avance sin conectar', 'off');
+    aviso('Desconectado. Tu avance sigue guardado en GitHub; para volver a verlo, pega la llave otra vez.');
   });
   cargar();
 })();
