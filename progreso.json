@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-29T03:03:07Z",
+ "actualizado": "2026-10-29T03:07:45Z",
  "carrera": 0,
  "semanas": [
   0,
@@ -53,12 +53,12 @@
      "titulo": "Fase 0 · Tu GitHub en marcha",
      "estado": "abierto",
      "tareas": [
-      0,
+      1,
       7
      ]
     }
    ],
-   "porcentaje": 0,
+   "porcentaje": 6,
    "completada": false,
    "cerrados": 0,
    "total": 4
