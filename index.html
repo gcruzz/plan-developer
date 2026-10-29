@@ -10,7 +10,7 @@
 :root{
   --bg:#f3f5f9; --surface:#ffffff; --fg:#161b2b; --muted:#5a6378; --line:#d7dce7;
   --accent:#2a49c9; --accent-fg:#ffffff; --accent-soft:#e3e8fb; --mark:#ffe066; --mark-fg:#3a3000;
-  --code-bg:#eef1f7;
+  --code-bg:#eef1f7; --st-open:#1f883d; --st-closed:#8250df; --st-np:#59636e; --st-fg:#ffffff;
   --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
@@ -154,6 +154,30 @@ details.detail:not([open]) summary .opened{display:none}
 .pstat .estado.curso{border-color:var(--accent); color:var(--accent)}
 .pstat .estado.completa{background:var(--accent); border-color:var(--accent); color:var(--accent-fg)}
 .pstat .mono{font-size:.8rem; color:var(--muted); font-variant-numeric:tabular-nums}
+
+/* Dibujos de GitHub para el ejemplo de avance */
+.mock{border:1px solid var(--line); border-radius:8px; background:var(--surface); overflow:hidden; font-size:.92rem; min-width:0}
+.mock-head{padding:10px 14px; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center}
+.mock-head b{font-family:var(--body); font-size:1rem}
+.mock .num{color:var(--muted)}
+.mock .tag{font-family:var(--mono); font-size:.7rem; padding:1px 8px; border-radius:99px; background:var(--accent-soft); color:var(--fg)}
+.mock .st{font-size:.74rem; font-weight:700; padding:2px 10px; border-radius:99px; color:var(--st-fg)}
+.mock .st.abierto{background:var(--st-open)} .mock .st.cerrado{background:var(--st-closed)} .mock .st.np{background:var(--st-np)}
+.mock-meta{font-size:.8rem; color:var(--muted); width:100%}
+.mock-body{padding:10px 14px; display:flex; flex-direction:column; gap:5px}
+.mock-body h5{margin:6px 0 0; font-family:var(--body); font-size:.9rem}
+.mock .box{display:flex; gap:8px; align-items:flex-start}
+.mock .box i{font-style:normal; width:16px; height:16px; border:1.5px solid var(--muted); border-radius:3px; flex:none; margin-top:3px; display:grid; place-items:center; font-size:.7rem; line-height:1}
+.mock .box.on i{background:var(--accent); border-color:var(--accent); color:var(--accent-fg)}
+.mock .box.nuevo span{background:var(--mark); color:var(--mark-fg); border-radius:3px; padding:0 4px}
+.mock-foot{padding:10px 14px; border-top:1px solid var(--line); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.mock .b2{border:1px solid var(--line); border-radius:6px; padding:4px 12px; font-size:.82rem; background:var(--bg)}
+.mock .b2.hl{box-shadow:0 0 0 3px var(--mark)}
+.mock .nota{font-size:.82rem; color:var(--muted)}
+.mock .mbar{height:8px; background:var(--accent-soft); border-radius:99px; overflow:hidden; flex:1 1 160px}
+.mock .mbar span{display:block; height:100%; background:var(--st-open)}
+.ejemplo{display:flex; flex-direction:column; gap:12px}
+.ejemplo h4{font-family:var(--display); font-size:1.05rem; margin:8px 0 0}
 dl.concepts{margin:0; display:flex; flex-direction:column; gap:10px}
 dl.concepts dt{font-weight:700}
 dl.concepts dd{margin:2px 0 0; color:var(--muted)}
@@ -415,11 +439,77 @@ git push -u origin main</pre>
       <li>Tu mentor te invita como colaborador. Te llega un correo de GitHub: tócalo y elige <b>Accept invitation</b> (aceptar invitación). También puedes aceptarla en <a href="https://github.com/gcruzz/IT-Programming/invitations" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/invitations</a>.</li>
       <li>Entra a <a href="https://github.com/gcruzz/IT-Programming/milestones" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/milestones</a>. Vas a ver las 15 fases, cada una con su porcentaje.</li>
       <li>Toca la fase en la que estás. Cada fase tiene 4 issues: el proyecto de prueba, los 2 proyectos propuestos y "Semanas y cursos".</li>
-      <li>Abre el issue y marca las casillas a medida que avanzas: se marcan directamente, sin editar nada. Unos minutos después, la versión oficial de este plan muestra en cada fase tu <b>avance oficial</b>.</li>
+      <li>Abre el issue y marca las casillas a medida que avanzas: se marcan directamente, sin editar nada. Más abajo tienes un ejemplo completo con dibujos. Unos minutos después, la versión oficial de este plan muestra en cada fase tu <b>avance oficial</b>.</li>
       <li>Cuando termines un proyecto, toca <b>Close issue</b> (cerrar issue). El proyecto propuesto que decidas no hacer ciérralo con la flecha al lado del botón → <b>Close as not planned</b> (cerrar como no planeado). Cierra "Semanas y cursos" cuando marques todas sus casillas.</li>
       <li>Truco: si en un commit del repositorio de un proyecto escribes <code>Closes gcruzz/IT-Programming#12</code> (la palabra va en inglés), GitHub cierra solo el issue 12 cuando subes ese commit.</li>
     </ol>
     <p class="muted">Ese repositorio es de tu mentor: ahí solo marcas tu avance. Tu código, tu bitácora y tu portafolio siguen en tu propio GitHub.</p>
+  </div>
+  <div class="block ejemplo">
+    <h3>Ejemplo: así marcas tu avance</h3>
+    <p>Imagina que vas en la <b>fase 2 (Python)</b>. Estos dibujos muestran cómo se ve en GitHub y qué tocas en cada momento. Lo amarillo es lo que acabas de cambiar.</p>
+
+    <h4>1. Cada viernes: marca tu semana y tus cursos</h4>
+    <p>Terminaste la semana 5 y el curso de midudev. Entra a <code>github.com/gcruzz/IT-Programming/milestones</code>, abre <b>Fase 2 · Programar con Python</b> y después el issue <b>Fase 2 · Semanas y cursos</b>. Marca las casillas tocándolas directamente: no hace falta editar nada.</p>
+    <div class="mock">
+      <div class="mock-head"><b>Fase 2 · Semanas y cursos</b><span class="num">#12</span><span class="st abierto">Open</span><span class="tag">semanas y cursos</span>
+        <span class="mock-meta">Milestone: Fase 2 · Programar con Python · 4 de 12 tareas</span></div>
+      <div class="mock-body">
+        <h5>Semanas</h5><div class="box on"><i>✓</i><span>Semana 4 · Instalar Python, variables y tipos</span></div><div class="box on nuevo"><i>✓</i><span>Semana 5 · Condicionales y bucles</span></div><div class="box"><i></i><span>Semana 6 · Funciones</span></div><div class="box"><i></i><span>Semana 7 · Listas, tuplas, conjuntos y diccionarios</span></div>
+        <div class="nota">… y así hasta la semana 11</div>
+        <h5>Cursos</h5><div class="box on"><i>✓</i><span>MoureDev · Curso completo de Python desde cero (10 h)</span></div><div class="box on nuevo"><i>✓</i><span>midudev · Curso completo de Python desde cero 2025 (8.5 h)</span></div><div class="box"><i></i><span>Soy Dalto · Curso de Python desde cero (8 h)</span></div><div class="box"><i></i><span>CS50 en Español · Clase 6: Python (2.5 h, doblaje)</span></div>
+      </div>
+    </div>
+    <p class="muted">Este issue lo cierras al final de la fase, cuando todas sus casillas estén marcadas.</p>
+
+    <h4>2. Terminaste un proyecto: el "Juego de preguntas"</h4>
+    <p>Tu juego cumple todo lo que pide y ya está en tu portafolio. Abre el issue <b>Fase 2 · Propuesto: Juego de preguntas</b>, marca cada casilla de "listo cuando" y toca <b>Close issue</b> (cerrar issue), abajo del todo.</p>
+    <div class="mock">
+      <div class="mock-head"><b>Fase 2 · Propuesto: Juego de preguntas</b><span class="num">#10</span><span class="st abierto">Open</span><span class="tag">proyecto propuesto</span></div>
+      <div class="mock-body"><h5>Listo cuando</h5><div class="box on"><i>✓</i><span>Al menos 15 preguntas en 3 categorías</span></div><div class="box on"><i>✓</i><span>Los récords siguen ahí al cerrar y abrir el juego</span></div><div class="box on"><i>✓</i><span>Nunca se cae aunque el usuario escriba letras</span></div><div class="box on"><i>✓</i><span>Cada función hace una sola cosa y tiene un nombre claro</span></div><div class="box on nuevo"><i>✓</i><span>Lo agregué a mi portafolio</span></div></div>
+      <div class="mock-foot"><span class="b2 hl">Close issue</span><span class="nota">← tocas aquí. El estado pasa de <b>Open</b> (abierto) a <b>Closed</b> (cerrado).</span></div>
+    </div>
+
+    <h4>3. El otro proyecto propuesto, que decidiste no hacer</h4>
+    <p>De los dos propuestos solo hace falta uno. Abre <b>Fase 2 · Propuesto: Control de gastos personal</b>, toca la flechita al lado de <b>Close issue</b> y elige <b>Close as not planned</b> (cerrar como no planeado). Así no queda colgado.</p>
+    <div class="mock">
+      <div class="mock-head"><b>Fase 2 · Propuesto: Control de gastos personal</b><span class="num">#11</span><span class="st np">Closed · not planned</span><span class="tag">proyecto propuesto</span></div>
+      <div class="mock-foot"><span class="b2">Close issue ▾</span><span class="b2 hl">Close as not planned</span><span class="nota">← la opción de la flechita</span></div>
+    </div>
+    <p class="muted">Si después te dan ganas de hacerlo, lo reabres con <b>Reopen issue</b> (reabrir) y lo terminas.</p>
+
+    <h4>4. Mientras haces el proyecto de prueba: marca lo que vas cumpliendo</h4>
+    <p>No hace falta esperar al final. En el issue <b>Fase 2 · Gestor de tareas en la terminal</b> (#9) marca cada casilla en cuanto la cumples. Así tu mentor ve que vas avanzando aunque el proyecto no esté terminado. Supongamos que ya marcaste 4 de sus 8 casillas.</p>
+
+    <h4>5. Qué vas a ver después</h4>
+    <p>En GitHub, la página de milestones muestra la fase con su barra. GitHub solo cuenta los issues cerrados: 2 de 4 (el juego y el de gastos).</p>
+    <div class="mock">
+      <div class="mock-head"><b>Fase 2 · Programar con Python</b><span class="mock-meta">Semanas 4–11</span></div>
+      <div class="mock-foot"><span class="mbar"><span style="width:50%"></span></span><span class="nota"><b>50%</b> complete · 2 open · 2 closed</span></div>
+    </div>
+    <p>En la versión oficial del plan (<code>gcruzz.github.io/plan-developer</code>), uno o dos minutos después, la fase 2 muestra:</p>
+    <div class="pstat" style="padding:10px 14px; border:1px solid var(--line); border-radius:8px; background:var(--surface)"><span class="estado curso">Oficial: En curso</span><span class="pbar"><span style="width:59%"></span></span><span class="mono">59% · 2 de 4 issues cerrados en GitHub</span></div>
+    <p>Los números no coinciden, y está bien. GitHub solo cuenta issues cerrados. El plan también cuenta las casillas que marcaste: proyectos 70%, semanas 20%, cursos 10%. La fase pasa a <b>Completada</b> cuando cierras el proyecto de prueba y uno de los propuestos.</p>
+
+    <h4>6. Las casillas de esta página y las de GitHub</h4>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>Casillas de esta página</th><th>Issues de GitHub</th></tr></thead>
+      <tbody>
+        <tr><td><b>Para qué</b></td><td>Tu borrador personal, para ir guiándote</td><td>Tu avance oficial</td></tr>
+        <tr><td><b>Dónde se guarda</b></td><td>Solo en este navegador</td><td>En el repositorio de tu mentor</td></tr>
+        <tr><td><b>Quién lo ve</b></td><td>Solo tú, en esta computadora</td><td>Tú y tu mentor, desde cualquier lugar</td></tr>
+        <tr><td><b>En la página se ve como</b></td><td>"…% en tus casillas"</td><td>"Oficial: …"</td></tr>
+      </tbody>
+    </table></div>
+
+    <h4>7. Si algo sale mal</h4>
+    <ul class="rules">
+      <li><b>Cerraste un issue por error.</b><span>Ábrelo y toca <b>Reopen issue</b> (reabrir). No se pierde nada.</span></li>
+      <li><b>Marcaste una casilla que no correspondía.</b><span>Tócala otra vez para desmarcarla.</span></li>
+      <li><b>No ves el repositorio de tu mentor (sale error 404).</b><span>Todavía no aceptaste la invitación. Búscala en tu correo o en <code>github.com/gcruzz/IT-Programming/invitations</code>.</span></li>
+      <li><b>No te deja marcar casillas.</b><span>Revisa que hayas iniciado sesión en GitHub con tu cuenta.</span></li>
+      <li><b>La página oficial no cambió.</b><span>Espera dos minutos y recarga con <b>Ctrl+F5</b>. Si sigue igual, avísale a tu mentor.</span></li>
+    </ul>
   </div>
   <div class="block">
     <h3>Cómo se organiza tu GitHub</h3>
