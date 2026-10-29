@@ -188,6 +188,17 @@ details.detail:not([open]) summary .opened{display:none}
 .avform{display:flex; flex-direction:column; gap:8px; padding-top:6px}
 .avrow{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
 #avtoken{flex:1 1 240px; min-width:0; font:inherit; font-family:var(--mono); font-size:.85rem; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg)}
+.ritmos{display:flex; flex-wrap:wrap; gap:8px}
+.ritmos button{font:inherit; display:flex; flex-direction:column; align-items:flex-start; gap:2px; padding:10px 14px; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--fg); cursor:pointer; min-width:120px}
+.ritmos button b{font-family:var(--display); font-size:1.1rem}
+.ritmos button small{color:var(--muted); font-size:.8rem}
+.ritmos button[aria-pressed="true"]{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); background:var(--accent-soft)}
+.ritmos button[disabled]{cursor:not-allowed; opacity:.7}
+.rinicio{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; font-size:.95rem}
+.rinicio input{font:inherit; padding:6px 8px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg)}
+.rresumen{background:var(--accent-soft); border-radius:8px; padding:12px 14px}
+.ritmo-fase{font-family:var(--mono); font-size:.8rem; color:var(--muted)}
+.ritmo-fase b{color:var(--accent); font-weight:600}
 .avok{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 12px; padding:12px 14px; border-radius:8px; background:var(--accent-soft)}
 .avok b{color:var(--st-open)}
 .btnp[disabled]{opacity:.6; cursor:wait}
@@ -243,14 +254,26 @@ button.small:hover{color:var(--fg)}
   <div class="block">
     <h3>El mapa completo: cuatro niveles, quince fases</h3>
     <div class="tbl"><table>
-      <thead><tr><th>Nivel</th><th>Fases</th><th>Semanas</th><th>Al terminar puedes…</th></tr></thead>
+      <thead><tr><th>Nivel</th><th>Fases</th><th>Semanas</th><th>A tu ritmo</th><th>Al terminar puedes…</th></tr></thead>
       <tbody>
-        <tr><td><b>Fundamentos</b></td><td class="mono">0–4</td><td class="mono">1–20</td><td>Resolver problemas con código propio, organizado y en GitHub.</td></tr>
-        <tr><td><b>Desarrollador junior</b></td><td class="mono">5–10</td><td class="mono">21–66</td><td>Diseñar bases de datos, construir y probar una aplicación web completa, y llevarla por QA hasta producción como en un equipo real.</td></tr>
-        <tr><td><b>Desarrollador sólido</b></td><td class="mono">11</td><td class="mono">67–76</td><td>Diseñar sistemas que aguanten usuarios reales y explicar tus decisiones.</td></tr>
-        <tr><td><b>Alto nivel con IA</b></td><td class="mono">12–14</td><td class="mono">77–106</td><td>Dirigir a la IA con criterio, construir productos con IA y presentarte al mercado laboral.</td></tr>
+        <tr><td><b>Fundamentos</b></td><td class="mono">0–4</td><td class="mono">1–20</td><td class="mono" data-hasta="20"></td><td>Resolver problemas con código propio, organizado y en GitHub.</td></tr>
+        <tr><td><b>Desarrollador junior</b></td><td class="mono">5–10</td><td class="mono">21–66</td><td class="mono" data-hasta="66"></td><td>Diseñar bases de datos, construir y probar una aplicación web completa, y llevarla por QA hasta producción como en un equipo real.</td></tr>
+        <tr><td><b>Desarrollador sólido</b></td><td class="mono">11</td><td class="mono">67–76</td><td class="mono" data-hasta="76"></td><td>Diseñar sistemas que aguanten usuarios reales y explicar tus decisiones.</td></tr>
+        <tr><td><b>Alto nivel con IA</b></td><td class="mono">12–14</td><td class="mono">77–106</td><td class="mono" data-hasta="106"></td><td>Dirigir a la IA con criterio, construir productos con IA y presentarte al mercado laboral.</td></tr>
       </tbody>
     </table></div>
+    <div class="card" id="ritmo">
+      <h3>Tu ritmo</h3>
+      <p>El plan está pensado para unas <b>9 horas por semana</b>: cada "semana" del plan son unas 9 horas de trabajo. Elige cuántas horas puedes dedicar de verdad, sin forzarte, y el plan te dice cuánto te toma cada fase. Lo puedes cambiar cuando quieras.</p>
+      <div class="ritmos" role="group" aria-label="Horas por semana">
+        <button type="button" data-horas="5"><b>5 h</b><small>tranquilo</small></button>
+        <button type="button" data-horas="9"><b>9 h</b><small>recomendado</small></button>
+        <button type="button" data-horas="15"><b>15 h</b><small>intenso</small></button>
+        <button type="button" data-horas="20"><b>20 h</b><small>fuerte</small></button>
+      </div>
+      <label class="rinicio" for="rinicio">¿Cuándo empezaste o vas a empezar? <input type="date" id="rinicio"> <span class="muted">(opcional, para ver fechas)</span></label>
+      <p class="rresumen" id="rresumen"></p>
+    </div>
     <p class="muted">Recorre el plan con el botón <b>Siguiente</b>, de a una pantalla. Puedes saltar a cualquier paso desde la barra de arriba. La versión oficial, siempre actualizada, está en <a href="https://gcruzz.github.io/plan-developer/" target="_blank" rel="noopener">gcruzz.github.io/plan-developer</a>.</p>
   </div>
 </section>
@@ -4143,7 +4166,8 @@ var PHASES = [
         '<h2>' + esc(p.title) + '</h2>' +
         '<div class="meta"><span class="chip ai">IA: ' + p.ai + '</span>' + (p.isNew ? '<span class="chip new">Fase nueva</span>' : '') + '</div>' +
         '<p>' + esc(p.intro) + '</p>' +
-        '<div class="pstat" data-pstat="' + p.n + '"></div></div></div>' +
+        '<div class="pstat" data-pstat="' + p.n + '"></div>' +
+        '<p class="ritmo-fase" data-when="' + esc(p.when) + '"></p></div></div>' +
       (WIN[p.n] ? '<p class="win"><span><b>En Windows:</b> ' + esc(WIN[p.n]) + '</span><button type="button" class="small" data-goto="windows">Ver la guía de Windows</button></p>' : '') +
       '<div class="block"><span class="sub">Qué aprendes</span><ul class="topics">' + li(p.topics) + '</ul></div>' +
       conceptsHtml +
@@ -4302,6 +4326,7 @@ var PHASES = [
     var on = soloLectura();
     document.body.classList.toggle('solo-lectura', on);
     var c = document.getElementById('avsolo'); if (c) c.checked = on;
+    if (typeof aplicarRitmo === 'function' && document.getElementById('rresumen')) aplicarRitmo();
     var t = document.getElementById('avtexto'); if (t) t.textContent = on ? 'Modo solo lectura: ves el avance, pero las casillas no se pueden cambiar.' : 'Cada casilla que marcas se guarda en GitHub.';
   }
   function estadoAvance(texto, tipo){
@@ -4354,6 +4379,11 @@ var PHASES = [
       avSha = d.sha;
       try { avance = JSON.parse(unb64(d.content)); } catch(e) { avance = { marcadas: {} }; }
       if (!avance.marcadas) avance.marcadas = {};
+      if (avance.ritmo && avance.ritmo.horas && typeof aplicarRitmo === 'function') {
+        ritmo = { horas: avance.ritmo.horas, inicio: avance.ritmo.inicio || '' };
+        try { localStorage.setItem(RITMO_KEY, JSON.stringify(ritmo)); } catch(e) {}
+        aplicarRitmo();
+      }
       if (cambio || !silencioso) pintar();
       if (!silencioso || cambio) estadoAvance('Avance al día ✓', 'ok');
       return true;
@@ -4373,10 +4403,13 @@ var PHASES = [
     if (!ks.length) return;
     guardando = true; estadoAvance('Guardando…');
     var ahora = new Date().toISOString();
-    ks.forEach(function(k){ if (lote[k].on) avance.marcadas[k] = ahora; else delete avance.marcadas[k]; });
+    ks.forEach(function(k){
+      if (k === '__ritmo') { avance.ritmo = lote[k].ritmo; return; }
+      if (lote[k].on) avance.marcadas[k] = ahora; else delete avance.marcadas[k];
+    });
     avance.actualizado = ahora;
     pintar();
-    var msg = ks.length === 1 ? (lote[ks[0]].on ? 'Marca: ' : 'Desmarca: ') + lote[ks[0]].txt : 'Avance: ' + ks.length + ' cambios';
+    var msg = ks.length === 1 ? (ks[0] === '__ritmo' ? 'Ritmo: ' : (lote[ks[0]].on ? 'Marca: ' : 'Desmarca: ')) + lote[ks[0]].txt : 'Avance: ' + ks.length + ' cambios';
     api('PUT', { message: msg, content: b64(JSON.stringify(avance, null, 1) + '\n'), sha: avSha, branch: AV.rama }).then(function(r){
       avSha = r.content.sha; guardando = false;
       estadoAvance('Guardado ✓ ' + new Date().toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit' }), 'ok');
@@ -4442,8 +4475,64 @@ var PHASES = [
   render();
   go(start, false);
 
+  // ---- Ritmo: horas por semana y fecha de inicio ----
+  var BASE_HORAS = 9, RITMO_KEY = 'ruta-ronald-ritmo';
+  var ritmo = { horas: 9, inicio: '' };
+  try { var rg = JSON.parse(localStorage.getItem(RITMO_KEY) || 'null'); if (rg && rg.horas) ritmo = rg; } catch(e) {}
+  function duracion(semanasReales){
+    if (semanasReales < 8) { var n = Math.max(1, Math.round(semanasReales)); return n + (n === 1 ? ' semana' : ' semanas'); }
+    var m = Math.round(semanasReales / 4.345); return m + (m === 1 ? ' mes' : ' meses');
+  }
+  function conArt(semanasReales){
+    var d = duracion(semanasReales);
+    return d === '1 semana' ? 'una semana' : d === '1 mes' ? 'un mes' : (d.indexOf('semana') >= 0 ? 'unas ' : 'unos ') + d;
+  }
+  function fechaTras(semanasReales){
+    if (!ritmo.inicio) return '';
+    var d = new Date(ritmo.inicio + 'T12:00:00'); if (isNaN(d)) return '';
+    d.setDate(d.getDate() + Math.round(semanasReales * 7));
+    return d.toLocaleDateString('es', { month: 'short', year: 'numeric' });
+  }
+  function rango(when){ var m = /(\d+)(?:\D+(\d+))?/.exec(when || ''); return m ? [+m[1], m[2] ? +m[2] : +m[1]] : [0, 0]; }
+  function aplicarRitmo(){
+    var f = BASE_HORAS / ritmo.horas;
+    Array.prototype.forEach.call(document.querySelectorAll('.ritmos button'), function(b){
+      b.setAttribute('aria-pressed', +b.getAttribute('data-horas') === ritmo.horas ? 'true' : 'false');
+      b.disabled = soloLectura() && !!llave();
+    });
+    var ri = document.getElementById('rinicio'); ri.value = ritmo.inicio || ''; ri.disabled = soloLectura() && !!llave();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-hasta]'), function(td){
+      var w = +td.getAttribute('data-hasta'), fe = fechaTras(w * f);
+      td.textContent = 'hasta ' + duracion(w * f) + (fe ? ' (' + fe + ')' : '');
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.ritmo-fase'), function(el){
+      var r = rango(el.getAttribute('data-when')), fe = fechaTras(r[1] * f);
+      el.innerHTML = 'A tu ritmo (' + ritmo.horas + ' h/semana): <b>' + conArt((r[1] - r[0] + 1) * f) + '</b>' + (fe ? ' · terminas ~' + fe : '');
+    });
+    var total = 106 * f, prac = 52 * f, jun = 66 * f;
+    document.getElementById('rresumen').innerHTML =
+      'A <b>' + ritmo.horas + ' horas por semana</b>, el plan completo te toma <b>' + conArt(total) + '</b>' + (fechaTras(total) ? ' (terminarías ~' + fechaTras(total) + ')' : '') + '. ' +
+      'Llegarías a nivel para buscar prácticas (fase 8) en ' + conArt(prac) + (fechaTras(prac) ? ' (~' + fechaTras(prac) + ')' : '') +
+      ' y a nivel junior para buscar trabajo (fase 10) en ' + conArt(jun) + (fechaTras(jun) ? ' (~' + fechaTras(jun) + ')' : '') + '.' +
+      (ritmo.horas > 15 ? ' Es un ritmo exigente: si sientes que no te alcanza, bajar a 9 h está bien.' : '');
+  }
+  function cambiarRitmo(nuevo){
+    ritmo = nuevo;
+    try { localStorage.setItem(RITMO_KEY, JSON.stringify(ritmo)); } catch(e) {}
+    aplicarRitmo();
+    if (llave() && !soloLectura()) {
+      pendientes['__ritmo'] = { on: true, txt: ritmo.horas + ' h/semana' + (ritmo.inicio ? ', desde ' + ritmo.inicio : ''), ritmo: { horas: ritmo.horas, inicio: ritmo.inicio } };
+      clearTimeout(guardarTimer); guardarTimer = setTimeout(guardar, 1200);
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.ritmos button'), function(b){
+    b.addEventListener('click', function(){ cambiarRitmo({ horas: +b.getAttribute('data-horas'), inicio: ritmo.inicio }); });
+  });
+  document.getElementById('rinicio').addEventListener('change', function(){ cambiarRitmo({ horas: ritmo.horas, inicio: this.value }); });
+
   ponerClaves();
   aplicarModo();
+  aplicarRitmo();
   document.getElementById('avsolo').addEventListener('change', function(){
     try { if (this.checked) localStorage.setItem('ruta-ronald-solo-lectura', '1'); else localStorage.removeItem('ruta-ronald-solo-lectura'); } catch(e) {}
     aplicarModo();
