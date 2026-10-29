@@ -4116,7 +4116,7 @@ var PHASES = [
     var courses = p.courses.map(function(c, ci){
       var o = OS[c[2]], tag = '';
       if (o && o.os === 'varios') tag = '<span class="os">incluye Windows</span>';
-      var note = (o && o.note) ? '<span class="osnote">En Windows: ' + esc(o.note.replace(/^En Windows:?\s*/i, '')) + '</span>' : '';
+      var note = (o && o.note) ? '<span class="osnote">En Windows: ' + esc(o.note.replace(/^En Windows[,:;\s]*/i, '')) + '</span>' : '';
       return '<li><label class="seen" title="Ya vi este curso"><input type="checkbox" id="c' + p.n + '-' + ci + '" aria-label="Ya vi este curso: ' + esc(c[1]) + '"></label><span class="year">' + esc(c[0]) + '</span><span><a href="' + esc(c[2]) + '" target="_blank" rel="noopener">' + esc(c[1]) + '</a>' + tag + note + '</span></li>';
     }).join('');
     function portLabel(id){ return '<label><input type="checkbox" id="' + id + '"><span><b>Lo agregué a mi portafolio</b> (tu-usuario.github.io)</span></label>'; }
