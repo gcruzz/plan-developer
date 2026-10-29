@@ -1,0 +1,865 @@
+{
+ "actualizado": "2026-10-29T02:36:49Z",
+ "carrera": 0,
+ "semanas": [
+  0,
+  106
+ ],
+ "fases": {
+  "0": {
+   "titulo": "Fase 0 · Git y GitHub",
+   "issues": [
+    {
+     "numero": 4,
+     "tipo": "semanas",
+     "titulo": "Fase 0 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      6
+     ],
+     "semanas": [
+      0,
+      2
+     ],
+     "cursos": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 3,
+     "tipo": "propuesto",
+     "titulo": "Fase 0 · Propuesto: Perfil profesional en Markdown",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 2,
+     "tipo": "propuesto",
+     "titulo": "Fase 0 · Propuesto: Laboratorio de ramas",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 1,
+     "tipo": "prueba",
+     "titulo": "Fase 0 · Tu GitHub en marcha",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      7
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "1": {
+   "titulo": "Fase 1 · Cómo funciona una computadora",
+   "issues": [
+    {
+     "numero": 8,
+     "tipo": "semanas",
+     "titulo": "Fase 1 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ],
+     "semanas": [
+      0,
+      1
+     ],
+     "cursos": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 7,
+     "tipo": "propuesto",
+     "titulo": "Fase 1 · Propuesto: Script organizador de proyectos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 6,
+     "tipo": "propuesto",
+     "titulo": "Fase 1 · Propuesto: Ficha técnica de tu computadora",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 5,
+     "tipo": "prueba",
+     "titulo": "Fase 1 · Mi computadora por dentro",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "2": {
+   "titulo": "Fase 2 · Programar con Python",
+   "issues": [
+    {
+     "numero": 12,
+     "tipo": "semanas",
+     "titulo": "Fase 2 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      12
+     ],
+     "semanas": [
+      0,
+      8
+     ],
+     "cursos": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 11,
+     "tipo": "propuesto",
+     "titulo": "Fase 2 · Propuesto: Control de gastos personal",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 10,
+     "tipo": "propuesto",
+     "titulo": "Fase 2 · Propuesto: Juego de preguntas",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 9,
+     "tipo": "prueba",
+     "titulo": "Fase 2 · Gestor de tareas en la terminal",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      8
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "3": {
+   "titulo": "Fase 3 · Estructuras de datos y algoritmos",
+   "issues": [
+    {
+     "numero": 16,
+     "tipo": "semanas",
+     "titulo": "Fase 3 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      13
+     ],
+     "semanas": [
+      0,
+      6
+     ],
+     "cursos": [
+      0,
+      7
+     ]
+    },
+    {
+     "numero": 15,
+     "tipo": "propuesto",
+     "titulo": "Fase 3 · Propuesto: Comparador de ordenamientos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 14,
+     "tipo": "propuesto",
+     "titulo": "Fase 3 · Propuesto: Resolvedor de sudokus",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 13,
+     "tipo": "prueba",
+     "titulo": "Fase 3 · Resolvedor de laberintos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      7
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "4": {
+   "titulo": "Fase 4 · Programación orientada a objetos y código limpio",
+   "issues": [
+    {
+     "numero": 20,
+     "tipo": "semanas",
+     "titulo": "Fase 4 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      7
+     ],
+     "semanas": [
+      0,
+      3
+     ],
+     "cursos": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 19,
+     "tipo": "propuesto",
+     "titulo": "Fase 4 · Propuesto: Blackjack en la consola",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 18,
+     "tipo": "propuesto",
+     "titulo": "Fase 4 · Propuesto: Inventario de una tienda",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 17,
+     "tipo": "prueba",
+     "titulo": "Fase 4 · Sistema de biblioteca",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      7
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "5": {
+   "titulo": "Fase 5 · La web a mano: HTML, CSS y JavaScript",
+   "issues": [
+    {
+     "numero": 24,
+     "tipo": "semanas",
+     "titulo": "Fase 5 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      15
+     ],
+     "semanas": [
+      0,
+      10
+     ],
+     "cursos": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 23,
+     "tipo": "propuesto",
+     "titulo": "Fase 5 · Propuesto: Buscador de libros",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 22,
+     "tipo": "propuesto",
+     "titulo": "Fase 5 · Propuesto: Tablero de tareas tipo Kanban",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 21,
+     "tipo": "prueba",
+     "titulo": "Fase 5 · Portafolio rediseñado + app del clima + un juego",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      8
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "6": {
+   "titulo": "Fase 6 · SQL y bases de datos relacionales",
+   "issues": [
+    {
+     "numero": 28,
+     "tipo": "semanas",
+     "titulo": "Fase 6 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      9
+     ],
+     "semanas": [
+      0,
+      6
+     ],
+     "cursos": [
+      0,
+      3
+     ]
+    },
+    {
+     "numero": 27,
+     "tipo": "propuesto",
+     "titulo": "Fase 6 · Propuesto: Sistema de calificaciones de un colegio",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 26,
+     "tipo": "propuesto",
+     "titulo": "Fase 6 · Propuesto: Análisis de ventas de una tienda",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 25,
+     "tipo": "prueba",
+     "titulo": "Fase 6 · Base de datos de la biblioteca",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      8
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "7": {
+   "titulo": "Fase 7 · Backend y APIs",
+   "issues": [
+    {
+     "numero": 32,
+     "tipo": "semanas",
+     "titulo": "Fase 7 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      12
+     ],
+     "semanas": [
+      0,
+      8
+     ],
+     "cursos": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 31,
+     "tipo": "propuesto",
+     "titulo": "Fase 7 · Propuesto: API de tienda en línea",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 30,
+     "tipo": "propuesto",
+     "titulo": "Fase 7 · Propuesto: API de reservas",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 29,
+     "tipo": "prueba",
+     "titulo": "Fase 7 · API de biblioteca",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      8
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "8": {
+   "titulo": "Fase 8 · Frontend moderno: TypeScript y React",
+   "issues": [
+    {
+     "numero": 36,
+     "tipo": "semanas",
+     "titulo": "Fase 8 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      12
+     ],
+     "semanas": [
+      0,
+      8
+     ],
+     "cursos": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 35,
+     "tipo": "propuesto",
+     "titulo": "Fase 8 · Propuesto: Mini red social",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 34,
+     "tipo": "propuesto",
+     "titulo": "Fase 8 · Propuesto: Panel de finanzas personales",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 33,
+     "tipo": "prueba",
+     "titulo": "Fase 8 · Una app para un usuario real",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      7
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "9": {
+   "titulo": "Fase 9 · Ingeniería profesional",
+   "issues": [
+    {
+     "numero": 40,
+     "tipo": "semanas",
+     "titulo": "Fase 9 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      14
+     ],
+     "semanas": [
+      0,
+      8
+     ],
+     "cursos": [
+      0,
+      6
+     ]
+    },
+    {
+     "numero": 39,
+     "tipo": "propuesto",
+     "titulo": "Fase 9 · Propuesto: Línea de calidad automática",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 38,
+     "tipo": "propuesto",
+     "titulo": "Fase 9 · Propuesto: Herramienta de terminal instalable",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 37,
+     "tipo": "prueba",
+     "titulo": "Fase 9 · Tu app, nivel profesional",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      8
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "10": {
+   "titulo": "Fase 10 · Del código a producción: QA, despliegue y operación",
+   "issues": [
+    {
+     "numero": 44,
+     "tipo": "semanas",
+     "titulo": "Fase 10 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      14
+     ],
+     "semanas": [
+      0,
+      6
+     ],
+     "cursos": [
+      0,
+      8
+     ]
+    },
+    {
+     "numero": 43,
+     "tipo": "propuesto",
+     "titulo": "Fase 10 · Propuesto: Simulacro de incidente",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 42,
+     "tipo": "propuesto",
+     "titulo": "Fase 10 · Propuesto: Servidor propio con dominio y HTTPS",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      6
+     ]
+    },
+    {
+     "numero": 41,
+     "tipo": "prueba",
+     "titulo": "Fase 10 · Tu app por el ciclo completo",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      11
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "11": {
+   "titulo": "Fase 11 · Arquitectura y diseño de sistemas",
+   "issues": [
+    {
+     "numero": 48,
+     "tipo": "semanas",
+     "titulo": "Fase 11 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      15
+     ],
+     "semanas": [
+      0,
+      10
+     ],
+     "cursos": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 47,
+     "tipo": "propuesto",
+     "titulo": "Fase 11 · Propuesto: Chat en tiempo real",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 46,
+     "tipo": "propuesto",
+     "titulo": "Fase 11 · Propuesto: Sistema de notificaciones con colas",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 45,
+     "tipo": "prueba",
+     "titulo": "Fase 11 · Acortador de URLs a escala",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      6
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "12": {
+   "titulo": "Fase 12 · Programar con IA",
+   "issues": [
+    {
+     "numero": 52,
+     "tipo": "semanas",
+     "titulo": "Fase 12 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      12
+     ],
+     "semanas": [
+      0,
+      6
+     ],
+     "cursos": [
+      0,
+      6
+     ]
+    },
+    {
+     "numero": 51,
+     "tipo": "propuesto",
+     "titulo": "Fase 12 · Propuesto: Auditoría de seguridad",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 50,
+     "tipo": "propuesto",
+     "titulo": "Fase 12 · Propuesto: Primero los tests, después la IA",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 49,
+     "tipo": "prueba",
+     "titulo": "Fase 12 · Rehacer con IA y auditar",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      7
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "13": {
+   "titulo": "Fase 13 · Construir productos con IA",
+   "issues": [
+    {
+     "numero": 56,
+     "tipo": "semanas",
+     "titulo": "Fase 13 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      16
+     ],
+     "semanas": [
+      0,
+      10
+     ],
+     "cursos": [
+      0,
+      6
+     ]
+    },
+    {
+     "numero": 55,
+     "tipo": "propuesto",
+     "titulo": "Fase 13 · Propuesto: Tu propio servidor MCP",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 54,
+     "tipo": "propuesto",
+     "titulo": "Fase 13 · Propuesto: Clasificador de mensajes",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      4
+     ]
+    },
+    {
+     "numero": 53,
+     "tipo": "prueba",
+     "titulo": "Fase 13 · Asistente con IA",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      7
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  },
+  "14": {
+   "titulo": "Fase 14 · Proyecto final y entrada a la industria",
+   "issues": [
+    {
+     "numero": 60,
+     "tipo": "semanas",
+     "titulo": "Fase 14 · Semanas y cursos",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      21
+     ],
+     "semanas": [
+      0,
+      14
+     ],
+     "cursos": [
+      0,
+      7
+     ]
+    },
+    {
+     "numero": 59,
+     "tipo": "propuesto",
+     "titulo": "Fase 14 · Propuesto: Producto con suscripción",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 58,
+     "tipo": "propuesto",
+     "titulo": "Fase 14 · Propuesto: Proyecto en equipo",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      5
+     ]
+    },
+    {
+     "numero": 57,
+     "tipo": "prueba",
+     "titulo": "Fase 14 · Tu producto",
+     "estado": "abierto",
+     "tareas": [
+      0,
+      9
+     ]
+    }
+   ],
+   "porcentaje": 0,
+   "completada": false,
+   "cerrados": 0,
+   "total": 4
+  }
+ }
+}

@@ -177,7 +177,7 @@ button.small:hover{color:var(--fg)}
     <div class="toprow">
       <span class="name">Ruta de Ronald</span>
       <span class="where" id="where">Paso 1</span>
-      <span class="stats"><span class="bar"><span id="bar"></span></span><span class="where" id="count">Carrera 0%</span></span>
+      <span class="stats"><span class="where" id="oficial" hidden></span><span class="bar"><span id="bar"></span></span><span class="where" id="count">Carrera 0%</span></span>
     </div>
     <nav class="rail" id="rail" aria-label="Pasos del plan"></nav>
   </div>
@@ -208,7 +208,7 @@ button.small:hover{color:var(--fg)}
         <tr><td><b>Alto nivel con IA</b></td><td class="mono">12–14</td><td class="mono">77–106</td><td>Dirigir a la IA con criterio, construir productos con IA y presentarte al mercado laboral.</td></tr>
       </tbody>
     </table></div>
-    <p class="muted">Recorre el plan con el botón <b>Siguiente</b>, de a una pantalla. Puedes saltar a cualquier paso desde la barra de arriba.</p>
+    <p class="muted">Recorre el plan con el botón <b>Siguiente</b>, de a una pantalla. Puedes saltar a cualquier paso desde la barra de arriba. La versión oficial, siempre actualizada, está en <a href="https://gcruzz.github.io/plan-developer/" target="_blank" rel="noopener">gcruzz.github.io/plan-developer</a>.</p>
   </div>
 </section>
 
@@ -387,7 +387,7 @@ source .venv/bin/activate</pre></div>
       <li>Instala <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a> y <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a>. En Windows, sigue la sección "Git y Git Bash" y "VS Code" de la pantalla <b>Windows</b>. <button type="button" class="small" data-goto="windows">Ir a la guía de Windows</button></li>
       <li>Mira uno de los cursos de Git de la fase 0 hasta la parte de <code>commit</code> y <code>push</code>.</li>
       <li>Configura Git con tu nombre y correo, y crea tu repositorio <code>bitacora</code> con los comandos de abajo. La primera vez que hagas <code>push</code>, Git abre el navegador para que inicies sesión en GitHub.</li>
-      <li>Publica este plan en GitHub Pages: toca <b>New</b> (nuevo) para crear un repositorio llamado <code>ruta</code>, márcalo como <b>Public</b> (público) y toca <b>Create repository</b> (crear repositorio). Sube el archivo <code>index.html</code> del plan con <b>Add file → Upload files</b> (agregar archivo → subir archivos) y toca <b>Commit changes</b> (guardar los cambios). Luego entra a <b>Settings → Pages</b> (configuración → páginas) y en <b>Branch</b> (rama) elige <code>main</code>. En un par de minutos estará en <code>https://tu-usuario.github.io/ruta</code>.</li>
+      <li>Practica GitHub Pages publicando tu propia copia de este plan. La versión oficial, siempre actualizada, es <a href="https://gcruzz.github.io/plan-developer/" target="_blank" rel="noopener">gcruzz.github.io/plan-developer</a>. Para tu copia, toca <b>New</b> (nuevo) para crear un repositorio llamado <code>ruta</code>, márcalo como <b>Public</b> (público) y toca <b>Create repository</b> (crear repositorio). Sube el archivo <code>index.html</code> del plan con <b>Add file → Upload files</b> (agregar archivo → subir archivos) y toca <b>Commit changes</b> (guardar los cambios). Luego entra a <b>Settings → Pages</b> (configuración → páginas) y en <b>Branch</b> (rama) elige <code>main</code>. En un par de minutos estará en <code>https://tu-usuario.github.io/ruta</code>.</li>
       <li>Crea tu portafolio siguiendo la pantalla siguiente, <b>Portafolio</b>.</li>
       <li>Mándale a tu mentor el link de tu perfil de GitHub y de tu portafolio, y agenda la primera reunión.</li>
     </ol>
@@ -415,7 +415,7 @@ git push -u origin main</pre>
       <li>Tu mentor te invita como colaborador. Te llega un correo de GitHub: tócalo y elige <b>Accept invitation</b> (aceptar invitación). También puedes aceptarla en <a href="https://github.com/gcruzz/IT-Programming/invitations" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/invitations</a>.</li>
       <li>Entra a <a href="https://github.com/gcruzz/IT-Programming/milestones" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/milestones</a>. Vas a ver las 15 fases, cada una con su porcentaje.</li>
       <li>Toca la fase en la que estás. Cada fase tiene 4 issues: el proyecto de prueba, los 2 proyectos propuestos y "Semanas y cursos".</li>
-      <li>Abre el issue y marca las casillas a medida que avanzas: se marcan directamente, sin editar nada.</li>
+      <li>Abre el issue y marca las casillas a medida que avanzas: se marcan directamente, sin editar nada. Unos minutos después, la versión oficial de este plan muestra en cada fase tu <b>avance oficial</b>.</li>
       <li>Cuando termines un proyecto, toca <b>Close issue</b> (cerrar issue). El proyecto propuesto que decidas no hacer ciérralo con la flecha al lado del botón → <b>Close as not planned</b> (cerrar como no planeado). Cierra "Semanas y cursos" cuando marques todas sus casillas.</li>
       <li>Truco: si en un commit del repositorio de un proyecto escribes <code>Closes gcruzz/IT-Programming#12</code> (la palabra va en inglés), GitHub cierra solo el issue 12 cuando subes ese commit.</li>
     </ol>
@@ -545,9 +545,9 @@ git push -u origin main</pre>
     <ol class="steps">
       <li>Asegúrate de que el repositorio exista en GitHub y tenga los issues activados. Si no existe, créalo (privado está bien) con <code>gh repo create gcruzz/IT-Programming --private</code> o subiendo tu carpeta local.</li>
       <li>Revisa que GitHub CLI esté conectado a tu cuenta con <code>gh auth status</code>.</li>
-      <li>Si Ronald ya tiene usuario, cambia <code>USUARIO-DE-RONALD</code> en la línea <code>PLAN=</code> del comando: así cada issue enlaza a su fase en el plan publicado.</li>
       <li>Pega el comando en Git Bash, una sola vez. Si falla a la mitad, no lo vuelvas a pegar entero: crearía fases repetidas.</li>
       <li>Invita a Ronald como colaborador: <code>gh api -X PUT repos/gcruzz/IT-Programming/collaborators/USUARIO-DE-RONALD</code>, o en el repositorio <b>Settings → Collaborators → Add people</b>. En un repo personal, los colaboradores pueden escribir: protege la rama <code>master</code> si no quieres que cambie el código del plan.</li>
+      <li>No hace falta hacer nada más: una automatización de GitHub Actions en tu repositorio publica el avance (solo números y títulos) en la versión oficial del plan cada vez que Ronald marca o cierra algo.</li>
       <li>Para seguirlo: <a href="https://github.com/gcruzz/IT-Programming/milestones" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/milestones</a>. Cada casilla que marca y cada issue que cierra queda con fecha en el historial.</li>
     </ol>
     <details class="detail"><summary><span class="closed">Ver el comando completo</span><span class="opened">Ocultar el comando</span></summary><div class="detail-body">
@@ -4088,7 +4088,8 @@ var PHASES = [
         '<h2>' + esc(p.title) + '</h2>' +
         '<div class="meta"><span class="chip ai">IA: ' + p.ai + '</span>' + (p.isNew ? '<span class="chip new">Fase nueva</span>' : '') + '</div>' +
         '<p>' + esc(p.intro) + '</p>' +
-        '<div class="pstat" data-pstat="' + p.n + '"></div></div></div>' +
+        '<div class="pstat" data-pstat="' + p.n + '"></div>' +
+        '<div class="pstat" data-oficial="' + p.n + '" hidden></div></div></div>' +
       (WIN[p.n] ? '<p class="win"><span><b>En Windows:</b> ' + esc(WIN[p.n]) + '</span><button type="button" class="small" data-goto="windows">Ver la guía de Windows</button></p>' : '') +
       '<div class="block"><span class="sub">Qué aprendes</span><ul class="topics">' + li(p.topics) + '</ul></div>' +
       conceptsHtml +
@@ -4123,7 +4124,7 @@ var PHASES = [
     '    <h1>TU NOMBRE</h1>',
     '    <p class="sub">Aprendiendo a construir software desde cero ·',
     '      <a href="https://github.com/TU-USUARIO">Mi GitHub</a> ·',
-    '      <a href="https://TU-USUARIO.github.io/ruta">Mi plan de estudio</a></p>',
+    '      <a href="https://gcruzz.github.io/plan-developer/">Mi plan de estudio</a></p>',
     '  </header>',
     '',
     '  <h2>Sobre mí</h2>',
@@ -4165,8 +4166,7 @@ var PHASES = [
     '# Seguimiento de la Ruta de Ronald en el repositorio del mentor.',
     '# Crea 15 milestones (uno por fase) y 60 issues. Ejecútalo una sola vez en Git Bash.',
     'REPO="gcruzz/IT-Programming"',
-    '# Cambia USUARIO-DE-RONALD por el usuario de GitHub de Ronald:',
-    'PLAN="https://USUARIO-DE-RONALD.github.io/ruta"',
+    'PLAN="https://gcruzz.github.io/plan-developer"',
     'gh label create "proyecto de prueba" --repo "$REPO" --color 2a49c9 --description "Obligatorio en cada fase" --force',
     'gh label create "proyecto propuesto" --repo "$REPO" --color ffe066 --description "Dificultad media: elige al menos uno" --force',
     'gh label create "semanas y cursos" --repo "$REPO" --color 5a6378 --description "Semanas terminadas y cursos vistos" --force',
@@ -4261,7 +4261,7 @@ var PHASES = [
       if (!completa && faseActual === null) faseActual = n;
       var estado = completa ? '<span class="estado completa">Completada</span>' : (pct > 0 ? '<span class="estado curso">En curso</span>' : '<span class="estado">Pendiente</span>');
       var box = s.querySelector('[data-pstat]');
-      if (box) box.innerHTML = estado + '<span class="pbar"><span style="width:' + pct + '%"></span></span><span class="mono">' + pct + '% de la fase</span>';
+      if (box) box.innerHTML = estado + '<span class="pbar"><span style="width:' + pct + '%"></span></span><span class="mono">' + pct + '% en tus casillas</span>';
       s.classList.toggle('done', completa);
       railBtns[k].classList.toggle('done', completa);
       railBtns[k].textContent = base + (pct > 0 && !completa ? ' · ' + pct + '%' : '');
@@ -4317,6 +4317,32 @@ var PHASES = [
   else { try { var saved = parseInt(localStorage.getItem(POS), 10); if (saved >= 0 && saved < steps.length) start = saved; } catch(e) {} }
   render();
   go(start, false);
+
+  function renderOficial(d){
+    if (!d || !d.fases) return;
+    steps.forEach(function(s){
+      if (!s.classList.contains('phase')) return;
+      var n = s.getAttribute('data-id').replace('fase-', ''), f = d.fases[n], box = s.querySelector('[data-oficial]');
+      if (!f || !box) return;
+      var clase = f.completada ? 'completa' : (f.porcentaje > 0 ? 'curso' : '');
+      var texto = f.completada ? 'Completada' : (f.porcentaje > 0 ? 'En curso' : 'Pendiente');
+      box.innerHTML = '<span class="estado ' + clase + '">Oficial: ' + texto + '</span><span class="pbar"><span style="width:' + f.porcentaje + '%"></span></span>' +
+        '<span class="mono">' + f.porcentaje + '% · ' + f.cerrados + ' de ' + f.total + ' issues cerrados en GitHub</span>';
+      box.hidden = false;
+    });
+    var fecha = '';
+    try { fecha = new Date(d.actualizado).toLocaleString('es'); } catch(e) {}
+    var o = document.getElementById('oficial');
+    o.textContent = 'Oficial ' + d.carrera + '% ·';
+    o.title = 'Avance marcado en GitHub' + (fecha ? ', actualizado el ' + fecha : '');
+    o.hidden = false;
+  }
+  try {
+    fetch('progreso.json', { cache: 'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(renderOficial)
+      ['catch'](function(){});
+  } catch(e) {}
 })();
 </script>
 
