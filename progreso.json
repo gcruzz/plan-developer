@@ -1,8 +1,8 @@
 {
- "actualizado": "2026-10-29T03:19:12Z",
+ "actualizado": "2026-10-29T03:21:06Z",
  "carrera": 0,
  "semanas": [
-  0,
+  1,
   106
  ],
  "fases": {
@@ -198,12 +198,14 @@
      "titulo": "Fase 3 · Semanas y cursos",
      "estado": "abierto",
      "tareas": [
-      0,
+      1,
       13
      ],
-     "marcadas": [],
+     "marcadas": [
+      "Semana 12 · Pensar antes de programar: pseudocódigo y Big O"
+     ],
      "semanas": [
-      0,
+      1,
       6
      ],
      "cursos": [
@@ -245,7 +247,7 @@
      "marcadas": []
     }
    ],
-   "porcentaje": 0,
+   "porcentaje": 3,
    "completada": false,
    "cerrados": 0,
    "total": 4
