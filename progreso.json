@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-10-29T03:21:06Z",
+ "actualizado": "2026-10-29T03:21:32Z",
  "carrera": 0,
  "semanas": [
   1,
@@ -198,18 +198,19 @@
      "titulo": "Fase 3 · Semanas y cursos",
      "estado": "abierto",
      "tareas": [
-      1,
+      2,
       13
      ],
      "marcadas": [
-      "Semana 12 · Pensar antes de programar: pseudocódigo y Big O"
+      "Semana 12 · Pensar antes de programar: pseudocódigo y Big O",
+      "MoureDev · Curso completo de lógica de programación (7.5 h)"
      ],
      "semanas": [
       1,
       6
      ],
      "cursos": [
-      0,
+      1,
       7
      ]
     },
@@ -247,7 +248,7 @@
      "marcadas": []
     }
    ],
-   "porcentaje": 3,
+   "porcentaje": 5,
    "completada": false,
    "cerrados": 0,
    "total": 4
