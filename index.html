@@ -10,7 +10,7 @@
 :root{
   --bg:#f3f5f9; --surface:#ffffff; --fg:#161b2b; --muted:#5a6378; --line:#d7dce7;
   --accent:#2a49c9; --accent-fg:#ffffff; --accent-soft:#e3e8fb; --mark:#ffe066; --mark-fg:#3a3000;
-  --code-bg:#eef1f7; --st-open:#1f883d; --st-closed:#8250df; --st-np:#59636e; --st-fg:#ffffff;
+  --code-bg:#eef1f7; --st-open:#1f883d; --st-closed:#8250df; --st-np:#59636e; --st-fg:#ffffff; --st-err:#cf222e;
   --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
@@ -182,7 +182,13 @@ details.detail:not([open]) summary .opened{display:none}
 .gh-link{font-family:var(--mono); font-size:.74rem; padding:3px 10px; border-radius:6px; border:1px solid var(--accent); color:var(--accent); text-decoration:none; white-space:nowrap}
 .gh-link:hover{background:var(--accent-soft)}
 .gh-link.flash{box-shadow:0 0 0 4px var(--mark)}
-#steps input[type=checkbox]{cursor:default}
+#steps input[type=checkbox]{cursor:pointer}
+.avstate{font-weight:600}
+.avstate.ok{color:var(--st-open)} .avstate.err{color:var(--st-err)} .avstate.off{color:var(--muted)}
+.avform{display:flex; flex-direction:column; gap:8px; padding-top:6px}
+.avrow{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+#avtoken{flex:1 1 240px; min-width:0; font:inherit; font-family:var(--mono); font-size:.85rem; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg)}
+.btnp{font:inherit; font-weight:700; padding:8px 16px; border-radius:6px; border:0; background:var(--accent); color:var(--accent-fg); cursor:pointer}
 .project.np{opacity:.6}
 .toast{position:fixed; left:50%; transform:translateX(-50%); bottom:calc(20px + env(safe-area-inset-bottom, 0px)); z-index:20; background:var(--fg); color:var(--bg); padding:10px 16px; border-radius:8px; font-size:.92rem; max-width:min(92vw, 520px); box-shadow:0 6px 20px rgba(0,0,0,.25)}
 dl.concepts{margin:0; display:flex; flex-direction:column; gap:10px}
@@ -208,7 +214,7 @@ button.small:hover{color:var(--fg)}
     <div class="toprow">
       <span class="name">Ruta de Ronald</span>
       <span class="where" id="where">Paso 1</span>
-      <span class="stats"><span class="bar"><span id="bar"></span></span><span class="where" id="count">Carrera 0%</span></span>
+      <span class="stats"><span class="where avstate" id="avstate"></span><span class="bar"><span id="bar"></span></span><span class="where" id="count">Carrera 0%</span></span>
     </div>
     <nav class="rail" id="rail" aria-label="Pasos del plan"></nav>
   </div>
@@ -439,75 +445,30 @@ git push -u origin main</pre>
     </div>
     <p class="muted">Antes del <code>git remote add</code>, crea en GitHub un repositorio vacío llamado <code>bitacora</code> con el botón <b>New</b> (nuevo), sin marcar <b>Add a README file</b>.</p>
   </div>
-  <div class="card">
-    <h3>Tu avance: se marca en un solo lugar, GitHub</h3>
-    <p>Todo tu avance se marca en GitHub, en el repositorio de tu mentor, <code>gcruzz/IT-Programming</code>. Las casillas de este plan no se tocan: se marcan solas con lo que marcas allá. Junto a cada lista vas a ver el botón <b>Marcar en GitHub →</b>, que te lleva directo al issue que corresponde. Ahí cada fase es un <b>milestone</b> (hito) y cada proyecto es un <b>issue</b> (tarea) con su lista de casillas. GitHub calcula solo el porcentaje de cada fase, y tu mentor lo ve en el momento.</p>
+  <div class="card start" id="conectar">
+    <h3>Conecta tu avance (una sola vez)</h3>
+    <p>Tu avance se marca aquí mismo, en las casillas de este plan: los cursos que viste, las semanas que terminaste y el "listo cuando" de cada proyecto. Cada casilla que marcas se guarda en un segundo en el repositorio de tu mentor, y él la ve en ese momento.</p>
     <ol class="steps">
-      <li>Tu mentor te invita como colaborador. Te llega un correo de GitHub: tócalo y elige <b>Accept invitation</b> (aceptar invitación). También puedes aceptarla en <a href="https://github.com/gcruzz/IT-Programming/invitations" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/invitations</a>.</li>
-      <li>Entra a <a href="https://github.com/gcruzz/IT-Programming/milestones" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/milestones</a>. Vas a ver las 15 fases, cada una con su porcentaje.</li>
-      <li>Toca la fase en la que estás. Cada fase tiene 4 issues: el proyecto de prueba, los 2 proyectos propuestos y "Semanas y cursos".</li>
-      <li>Abre el issue y marca las casillas a medida que avanzas: se marcan directamente, sin editar nada. Más abajo tienes un ejemplo completo con dibujos. Uno o dos minutos después, las casillas de este plan aparecen marcadas igual y se actualiza tu porcentaje.</li>
-      <li>Cuando termines un proyecto, toca <b>Close issue</b> (cerrar issue). El proyecto propuesto que decidas no hacer ciérralo con la flecha al lado del botón → <b>Close as not planned</b> (cerrar como no planeado). Cierra "Semanas y cursos" cuando marques todas sus casillas.</li>
-      <li>Truco: si en un commit del repositorio de un proyecto escribes <code>Closes gcruzz/IT-Programming#12</code> (la palabra va en inglés), GitHub cierra solo el issue 12 cuando subes ese commit.</li>
+      <li>Tu mentor te va a pasar una <b>llave</b>: un texto largo que empieza con <code>github_pat_</code>. Es como una contraseña, no la compartas con nadie.</li>
+      <li>Pégala aquí abajo y toca <b>Conectar</b>.</li>
+      <li>Arriba, junto al porcentaje, vas a ver <b>Avance al día ✓</b>. Desde ahora, cada casilla que marques muestra <b>Guardando…</b> y luego <b>Guardado ✓</b>.</li>
+      <li>Si cambias de computadora o borras los datos del navegador, vuelve a pegar la llave. Tu avance no se pierde: está guardado en GitHub.</li>
     </ol>
-    <p class="muted">Ese repositorio es de tu mentor: ahí solo marcas tu avance. Tu código, tu bitácora y tu portafolio siguen en tu propio GitHub.</p>
+    <div class="avform">
+      <label for="avtoken" class="sub">Llave que te dio tu mentor</label>
+      <div class="avrow"><input id="avtoken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"><button type="button" class="btnp" id="avconectar">Conectar</button><button type="button" class="small" id="avquitar">Desconectar</button></div>
+      <p class="muted" id="avmsg"></p>
+    </div>
   </div>
-  <div class="block ejemplo">
+  <div class="block">
     <h3>Ejemplo: así marcas tu avance</h3>
-    <p>Imagina que vas en la <b>fase 2 (Python)</b>. Estos dibujos muestran cómo se ve en GitHub y qué tocas en cada momento. Lo amarillo es lo que acabas de cambiar.</p>
-
-    <h4>1. Cada viernes: marca tu semana y tus cursos</h4>
-    <p>Terminaste la semana 5 y el curso de midudev. Entra a <code>github.com/gcruzz/IT-Programming/milestones</code>, abre <b>Fase 2 · Programar con Python</b> y después el issue <b>Fase 2 · Semanas y cursos</b>. Marca las casillas tocándolas directamente: no hace falta editar nada.</p>
-    <div class="mock">
-      <div class="mock-head"><b>Fase 2 · Semanas y cursos</b><span class="num">#12</span><span class="st abierto">Open</span><span class="tag">semanas y cursos</span>
-        <span class="mock-meta">Milestone: Fase 2 · Programar con Python · 4 de 12 tareas</span></div>
-      <div class="mock-body">
-        <h5>Semanas</h5><div class="box on"><i>✓</i><span>Semana 4 · Instalar Python, variables y tipos</span></div><div class="box on nuevo"><i>✓</i><span>Semana 5 · Condicionales y bucles</span></div><div class="box"><i></i><span>Semana 6 · Funciones</span></div><div class="box"><i></i><span>Semana 7 · Listas, tuplas, conjuntos y diccionarios</span></div>
-        <div class="nota">… y así hasta la semana 11</div>
-        <h5>Cursos</h5><div class="box on"><i>✓</i><span>MoureDev · Curso completo de Python desde cero (10 h)</span></div><div class="box on nuevo"><i>✓</i><span>midudev · Curso completo de Python desde cero 2025 (8.5 h)</span></div><div class="box"><i></i><span>Soy Dalto · Curso de Python desde cero (8 h)</span></div><div class="box"><i></i><span>CS50 en Español · Clase 6: Python (2.5 h, doblaje)</span></div>
-      </div>
-    </div>
-    <p class="muted">Este issue lo cierras al final de la fase, cuando todas sus casillas estén marcadas.</p>
-
-    <h4>2. Terminaste un proyecto: el "Juego de preguntas"</h4>
-    <p>Tu juego cumple todo lo que pide y ya está en tu portafolio. Abre el issue <b>Fase 2 · Propuesto: Juego de preguntas</b>, marca cada casilla de "listo cuando" y toca <b>Close issue</b> (cerrar issue), abajo del todo.</p>
-    <div class="mock">
-      <div class="mock-head"><b>Fase 2 · Propuesto: Juego de preguntas</b><span class="num">#10</span><span class="st abierto">Open</span><span class="tag">proyecto propuesto</span></div>
-      <div class="mock-body"><h5>Listo cuando</h5><div class="box on"><i>✓</i><span>Al menos 15 preguntas en 3 categorías</span></div><div class="box on"><i>✓</i><span>Los récords siguen ahí al cerrar y abrir el juego</span></div><div class="box on"><i>✓</i><span>Nunca se cae aunque el usuario escriba letras</span></div><div class="box on"><i>✓</i><span>Cada función hace una sola cosa y tiene un nombre claro</span></div><div class="box on nuevo"><i>✓</i><span>Lo agregué a mi portafolio</span></div></div>
-      <div class="mock-foot"><span class="b2 hl">Close issue</span><span class="nota">← tocas aquí. El estado pasa de <b>Open</b> (abierto) a <b>Closed</b> (cerrado).</span></div>
-    </div>
-
-    <h4>3. El otro proyecto propuesto, que decidiste no hacer</h4>
-    <p>De los dos propuestos solo hace falta uno. Abre <b>Fase 2 · Propuesto: Control de gastos personal</b>, toca la flechita al lado de <b>Close issue</b> y elige <b>Close as not planned</b> (cerrar como no planeado). Así no queda colgado.</p>
-    <div class="mock">
-      <div class="mock-head"><b>Fase 2 · Propuesto: Control de gastos personal</b><span class="num">#11</span><span class="st np">Closed · not planned</span><span class="tag">proyecto propuesto</span></div>
-      <div class="mock-foot"><span class="b2">Close issue ▾</span><span class="b2 hl">Close as not planned</span><span class="nota">← la opción de la flechita</span></div>
-    </div>
-    <p class="muted">Si después te dan ganas de hacerlo, lo reabres con <b>Reopen issue</b> (reabrir) y lo terminas.</p>
-
-    <h4>4. Mientras haces el proyecto de prueba: marca lo que vas cumpliendo</h4>
-    <p>No hace falta esperar al final. En el issue <b>Fase 2 · Gestor de tareas en la terminal</b> (#9) marca cada casilla en cuanto la cumples. Así tu mentor ve que vas avanzando aunque el proyecto no esté terminado. Supongamos que ya marcaste 4 de sus 8 casillas.</p>
-
-    <h4>5. Qué vas a ver después</h4>
-    <p>En GitHub, la página de milestones muestra la fase con su barra. GitHub solo cuenta los issues cerrados: 2 de 4 (el juego y el de gastos).</p>
-    <div class="mock">
-      <div class="mock-head"><b>Fase 2 · Programar con Python</b><span class="mock-meta">Semanas 4–11</span></div>
-      <div class="mock-foot"><span class="mbar"><span style="width:50%"></span></span><span class="nota"><b>50%</b> complete · 2 open · 2 closed</span></div>
-    </div>
-    <p>En la versión oficial del plan (<code>gcruzz.github.io/plan-developer</code>), uno o dos minutos después, la fase 2 muestra:</p>
-    <div class="pstat" style="padding:10px 14px; border:1px solid var(--line); border-radius:8px; background:var(--surface)"><span class="estado curso">En curso</span><span class="pbar"><span style="width:59%"></span></span><span class="mono">59% de la fase · 2 de 4 issues cerrados en GitHub</span></div>
-    <p>Los números no coinciden, y está bien. GitHub solo cuenta issues cerrados. El plan también cuenta las casillas que marcaste: proyectos 70%, semanas 20%, cursos 10%. La fase pasa a <b>Completada</b> cuando cierras el proyecto de prueba y uno de los propuestos.</p>
-
-    <h4>6. Y las casillas de esta página</h4>
-    <p>Las casillas de este plan son un espejo de GitHub: aparecen marcadas cuando las marcas en los issues, y no se pueden marcar aquí. Si tocas una, el plan te avisa y resalta el botón <b>Marcar en GitHub →</b>. Así hay un solo lugar donde marcar, y lo que ves aquí es exactamente lo mismo que ve tu mentor.</p>
-
-    <h4>7. Si algo sale mal</h4>
+    <p>Terminaste la semana 5 de la fase 2. Ve a <b>Fase 2</b>, baja hasta <b>Semana a semana</b> y marca la casilla de la semana 5. Arriba aparece <b>Guardando…</b> y, un segundo después, <b>Guardado ✓ 18:42</b>. Tu mentor ya lo puede ver.</p>
+    <p>Lo mismo con los cursos (casilla junto a cada curso) y con los proyectos (casillas de "listo cuando"). Cuando terminas un proyecto, marca también <b>Lo agregué a mi portafolio</b>.</p>
     <ul class="rules">
-      <li><b>Cerraste un issue por error.</b><span>Ábrelo y toca <b>Reopen issue</b> (reabrir). No se pierde nada.</span></li>
-      <li><b>Marcaste una casilla que no correspondía.</b><span>Tócala otra vez para desmarcarla.</span></li>
-      <li><b>No ves el repositorio de tu mentor (sale error 404).</b><span>Todavía no aceptaste la invitación. Búscala en tu correo o en <code>github.com/gcruzz/IT-Programming/invitations</code>.</span></li>
-      <li><b>No te deja marcar casillas.</b><span>Revisa que hayas iniciado sesión en GitHub con tu cuenta.</span></li>
-      <li><b>La página oficial no cambió.</b><span>Espera dos minutos y recarga con <b>Ctrl+F5</b>. Si sigue igual, avísale a tu mentor.</span></li>
+      <li><b>Marcaste algo por error.</b><span>Desmárcalo: se guarda igual que una marca.</span></li>
+      <li><b>Arriba dice "Avance sin conectar".</b><span>Todavía no pegaste la llave en este navegador. Hazlo en el recuadro de arriba.</span></li>
+      <li><b>Dice "La llave no funciona" o "no tiene permiso".</b><span>La llave venció o tiene un error. Pídele una nueva a tu mentor.</span></li>
+      <li><b>Dice "Sin conexión con GitHub".</b><span>Revisa tu internet y recarga la página. Lo que no se guardó vuelve a intentarse cuando marcas otra casilla.</span></li>
     </ul>
   </div>
   <div class="block">
@@ -583,7 +544,7 @@ git push -u origin main</pre>
       <li>Pon el link al repositorio del proyecto.</li>
       <li>Si es un programa de terminal, saca una captura de pantalla, súbela a una carpeta <code>img</code> en el repo del portafolio y agrégala con la línea <code>&lt;img&gt;</code>.</li>
       <li>Si es una página web (desde la fase 5), publícala también con GitHub Pages en su propio repo y agrega el link de la demo. Quedará en <code>tu-usuario.github.io/nombre-del-repo</code>.</li>
-      <li>Haz commit con un mensaje como "Agrega Juego de preguntas al portafolio" y marca en el issue del proyecto, en GitHub, la casilla <b>Lo agregué a mi portafolio</b>.</li>
+      <li>Haz commit con un mensaje como "Agrega Juego de preguntas al portafolio" y marca en este plan la casilla <b>Lo agregué a mi portafolio</b>.</li>
     </ol>
   </div>
   <div class="block">
@@ -609,7 +570,7 @@ git push -u origin main</pre>
   <div class="card">
     <h3>Agenda de 45 minutos</h3>
     <div class="agenda">
-      <div><span class="mono">5 min</span><span><b>El portafolio, los milestones y la gráfica de contribuciones.</b> Ronald abre su portafolio y muestra qué proyectos agregó desde la última reunión, y luego los milestones del repositorio del mentor, con el porcentaje de cada fase. Después, el perfil de GitHub: ¿hubo commits casi todos los días de estudio?</span></div>
+      <div><span class="mono">5 min</span><span><b>El portafolio, su avance y la gráfica de contribuciones.</b> Ronald abre su portafolio y muestra qué proyectos agregó desde la última reunión, y luego su porcentaje de avance en el plan. Después, el perfil de GitHub: ¿hubo commits casi todos los días de estudio?</span></div>
       <div><span class="mono">15 min</span><span><b>Demo.</b> Ronald muestra funcionando lo que construyó. Si no funciona, muestra hasta dónde llegó.</span></div>
       <div><span class="mono">10 min</span><span><b>Explícame esto.</b> El mentor elige una parte del código y Ronald la explica sin notas. Si no puede, esa parte va a la lista de repaso.</span></div>
       <div><span class="mono">10 min</span><span><b>Dónde te trabaste.</b> Qué problema tuvo, cómo lo resolvió o qué intentó.</span></div>
@@ -622,30 +583,26 @@ git push -u origin main</pre>
       <li><b>Commits pequeños y frecuentes</b> con mensajes que dicen qué cambió ("Agrega validación de fechas", no "cambios").</li>
       <li><b>README en cada proyecto</b>: qué hace, cómo ejecutarlo y qué aprendió.</li>
       <li><b>Bitácora al día</b>: una nota por semana, sin huecos largos.</li>
-      <li><b>Milestones</b>: en <code>github.com/gcruzz/IT-Programming/milestones</code> ves el porcentaje de cada fase, qué casillas marcó y qué proyectos cerró. No necesitas que Ronald te mande nada.</li>
+      <li><b>Su avance</b>: abre el plan con la llave conectada, o mira el historial en <code>github.com/gcruzz/IT-Programming/commits/avance</code>. Cada casilla que marca es un commit con fecha y hora.</li>
       <li><b>Portafolio al día</b>: cada proyecto terminado aparece con su link, una captura o demo y una frase de qué aprendió.</li>
       <li><b>Código propio</b>: la mejor señal es que Ronald lo pueda explicar línea por línea.</li>
       <li><b>Desde la fase 6, pull requests</b>: cada cambio llega en una rama con un <i>pull request</i> (una solicitud para unir esos cambios al proyecto), y el mentor lo revisa y comenta en GitHub como en un equipo real.</li>
     </ul>
   </div>
   <div class="card">
-    <h3>Para el mentor: preparar el seguimiento (una sola vez)</h3>
-    <p>El avance oficial de Ronald vive en tu repositorio <code>gcruzz/IT-Programming</code>: 15 milestones (uno por fase) y 60 issues (por fase: el proyecto de prueba, los 2 propuestos y "Semanas y cursos"). El comando de abajo lo crea todo a partir de los datos de este plan.</p>
+    <h3>Para el mentor: la llave de Ronald (una sola vez)</h3>
+    <p>Las marcas de Ronald se guardan en <code>avance.json</code>, en la rama <code>avance</code> de tu repositorio <code>gcruzz/IT-Programming</code>. Para que la página pueda escribir ahí, Ronald necesita una llave (un token de GitHub) creada por ti.</p>
     <ol class="steps">
-      <li>Asegúrate de que el repositorio exista en GitHub y tenga los issues activados. Si no existe, créalo (privado está bien) con <code>gh repo create gcruzz/IT-Programming --private</code> o subiendo tu carpeta local.</li>
-      <li>Revisa que GitHub CLI esté conectado a tu cuenta con <code>gh auth status</code>.</li>
-      <li>Pega el comando en Git Bash, una sola vez. Si falla a la mitad, no lo vuelvas a pegar entero: crearía fases repetidas.</li>
-      <li>Invita a Ronald como colaborador: <code>gh api -X PUT repos/gcruzz/IT-Programming/collaborators/USUARIO-DE-RONALD</code>, o en el repositorio <b>Settings → Collaborators → Add people</b>. En un repo personal, los colaboradores pueden escribir: protege la rama <code>master</code> si no quieres que cambie el código del plan.</li>
-      <li>No hace falta hacer nada más: una automatización de GitHub Actions en tu repositorio publica el avance (solo números y títulos) en la versión oficial del plan cada vez que Ronald marca o cierra algo.</li>
-      <li>Para seguirlo: <a href="https://github.com/gcruzz/IT-Programming/milestones" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/milestones</a>. Cada casilla que marca y cada issue que cierra queda con fecha en el historial.</li>
+      <li>Entra a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (crear un token de acceso con permisos limitados).</li>
+      <li>En <b>Token name</b> escribe <code>Avance de Ronald</code>. En <b>Expiration</b> elige una fecha, por ejemplo un año.</li>
+      <li>En <b>Repository access</b> elige <b>Only select repositories</b> y marca solo <code>gcruzz/IT-Programming</code>.</li>
+      <li>En <b>Permissions → Repository permissions</b>, busca <b>Contents</b> y elige <b>Read and write</b>. No actives nada más.</li>
+      <li>Toca <b>Generate token</b> y copia el texto que empieza con <code>github_pat_</code>. GitHub lo muestra una sola vez.</li>
+      <li>Mándaselo a Ronald por mensaje privado. Él lo pega en la pantalla <b>GitHub</b> del plan, en "Conecta tu avance".</li>
+      <li>Pégalo también tú en tu navegador para ver su avance en la página, con todo marcado como lo tiene él.</li>
     </ol>
-    <details class="detail"><summary><span class="closed">Ver el comando completo</span><span class="opened">Ocultar el comando</span></summary><div class="detail-body">
-      <div class="codeblock">
-        <div class="lbl"><span>Git Bash · lo ejecuta el mentor, una sola vez</span><button type="button" class="small" data-copy="ghScript">Copiar</button></div>
-        <pre id="ghScript"></pre>
-      </div>
-    </div></details>
-    <p><button type="button" class="small" data-copy="ghScript">Copiar el comando</button></p>
+    <p><b>Para seguirlo:</b> abre el plan con la llave conectada, o mira el historial en <a href="https://github.com/gcruzz/IT-Programming/commits/avance" target="_blank" rel="noopener">github.com/gcruzz/IT-Programming/commits/avance</a>: cada marca es un commit con fecha y hora, por ejemplo "Marca: Semana 5".</p>
+    <p class="muted">La llave puede escribir cualquier archivo de <code>IT-Programming</code>, no solo el avance: GitHub no permite limitarla a un archivo. Si se pierde o termina la mentoría, bórrala en <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">github.com/settings/personal-access-tokens</a> y crea otra.</p>
   </div>
   <div class="codeblock">
     <div class="lbl"><span>Preparación de Ronald · antes de cada reunión</span><button type="button" class="small" data-copy="tpl2">Copiar</button></div>
@@ -705,16 +662,16 @@ para que yo lo arregle:
   </div>
   <div class="block">
     <h3>Tu porcentaje de avance</h3>
-    <p>Arriba ves cuánto llevas de toda la carrera, y en cada fase, su propio porcentaje. Todo sale de lo que marcas en GitHub, y se calcula así, para que construir pese más que mirar videos:</p>
+    <p>Arriba ves cuánto llevas de toda la carrera, y en cada fase, su propio porcentaje. Sale de las casillas que marcas en este plan, y se calcula así, para que construir pese más que mirar videos:</p>
     <div class="tbl"><table>
-      <thead><tr><th>Qué marcas en GitHub</th><th>Cuánto pesa</th></tr></thead>
+      <thead><tr><th>Qué marcas</th><th>Cuánto pesa</th></tr></thead>
       <tbody>
         <tr><td>Proyectos: las casillas de "listo cuando" del proyecto de prueba y del mejor de tus proyectos propuestos</td><td class="mono">70%</td></tr>
-        <tr><td>Semanas terminadas (issue "Semanas y cursos" de la fase)</td><td class="mono">20%</td></tr>
-        <tr><td>Cursos vistos (issue "Semanas y cursos" de la fase)</td><td class="mono">10%</td></tr>
+        <tr><td>Semanas terminadas (casilla junto a cada semana)</td><td class="mono">20%</td></tr>
+        <tr><td>Cursos vistos (casilla junto a cada curso)</td><td class="mono">10%</td></tr>
       </tbody>
     </table></div>
-    <p>Una fase queda <b>Completada</b> cuando terminas su proyecto de prueba y al menos uno de los propuestos. Cerrar un issue cuenta como terminado aunque falte alguna casilla, y un propuesto cerrado como "no planeado" no cuenta. Las casillas de este plan solo muestran lo que marcaste en GitHub (pantalla <b>GitHub</b>).</p>
+    <p>Una fase queda <b>Completada</b> cuando terminas su proyecto de prueba y al menos uno de los propuestos. Cada marca se guarda en el repositorio de tu mentor en el momento en que la haces; para eso, conecta tu avance una vez (pantalla <b>GitHub</b>).</p>
   </div>
   <div class="block">
     <h3>Para cuando sientas que no avanzas</h3>
@@ -745,7 +702,7 @@ para que yo lo arregle:
       <li>Ahora te toca a ti: enséñale a alguien que esté empezando. Explicar es la mejor forma de dominar lo que sabes.</li>
     </ul>
   </div>
-  <p class="muted">Tu avance se marca en GitHub, en el repositorio de tu mentor. Este plan lo muestra solo.</p>
+  <p class="muted">Cada casilla que marcas en este plan se guarda en el repositorio de tu mentor.</p>
 </section>
 
 </div></main>
@@ -4110,7 +4067,7 @@ var PHASES = [
     sec.setAttribute('data-id', 'fase-' + p.n);
     var D = DETAIL[p.n] || {};
     var pre = 'f' + p.n + '-';
-    function ghLink(tipo){ return '<a class="gh-link" data-gh="' + tipo + '" href="https://github.com/gcruzz/IT-Programming/milestones" target="_blank" rel="noopener">Marcar en GitHub →</a>'; }
+    function ghLink(tipo){ return ''; }
     var courses = p.courses.map(function(c, ci){
       var o = OS[c[2]], tag = '';
       if (o && o.os === 'varios') tag = '<span class="os">incluye Windows</span>';
@@ -4157,7 +4114,7 @@ var PHASES = [
       '</div>';
     }).join('');
 
-    var weeksHtml = D.weeks ? '<div class="block" data-issue="semanas"><div class="subrow"><span class="sub">Semana a semana · se marca en GitHub</span>' + ghLink('semanas') + '</div><div class="weeks">' +
+    var weeksHtml = D.weeks ? '<div class="block" data-issue="semanas"><div class="subrow"><span class="sub">Semana a semana · marca cada semana al terminarla</span>' + ghLink('semanas') + '</div><div class="weeks">' +
       D.weeks.map(function(w){
         return '<div class="week"><span class="wn"><label><input type="checkbox" id="w' + w.w + '" data-sem="' + w.w + '" aria-label="Semana ' + w.w + ' terminada">Semana ' + w.w + '</label></span><div class="wb"><b>' + esc(w.t) + '</b>' +
           '<p><span class="lbl2">Aprende</span>' + esc(w.learn) + '</p>' +
@@ -4246,47 +4203,6 @@ var PHASES = [
     '  </article>'
   ].join('\n');
 
-  // Comando para crear milestones e issues en la bitácora, a partir de PHASES y DETAIL
-  function bq(t){ return String(t).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\$/g, '\\$').replace(/`/g, '\\`'); }
-  function listo(items){ return items.map(function(d){ return '- [ ] ' + d; }).join('\n') + '\n- [ ] Lo agregué a mi portafolio'; }
-  var gh = [
-    '# Seguimiento de la Ruta de Ronald en el repositorio del mentor.',
-    '# Crea 15 milestones (uno por fase) y 60 issues. Ejecútalo una sola vez en Git Bash.',
-    'REPO="gcruzz/IT-Programming"',
-    'PLAN="https://gcruzz.github.io/plan-developer"',
-    'gh label create "proyecto de prueba" --repo "$REPO" --color 2a49c9 --description "Obligatorio en cada fase" --force',
-    'gh label create "proyecto propuesto" --repo "$REPO" --color ffe066 --description "Dificultad media: elige al menos uno" --force',
-    'gh label create "semanas y cursos" --repo "$REPO" --color 5a6378 --description "Semanas terminadas y cursos vistos" --force',
-    ''
-  ];
-  PHASES.forEach(function(p){
-    var D = DETAIL[p.n] || {}, ms = 'Fase ' + p.n + ' · ' + p.title;
-    gh.push('# ---- ' + ms);
-    gh.push('gh api "repos/$REPO/milestones" -f title="' + bq(ms) + '" -f description="' + bq(p.when) + '" --silent');
-    var mainDone = (D.project && D.project.done) || p.project.done;
-    gh.push('gh issue create --repo "$REPO" --milestone "' + bq(ms) + '" --label "proyecto de prueba" --title "' + bq('Fase ' + p.n + ' · ' + p.project.name) + '" --body "$(cat <<\'FIN\'');
-    gh.push('Proyecto de prueba de la fase ' + p.n + ' (obligatorio).\n\n' + p.project.desc + '\n\n## Listo cuando\n' + listo(mainDone) + '\n\nDetalle completo en el plan: ');
-    gh.push('FIN');
-    gh.push(')$PLAN/#fase-' + p.n + '"');
-    p.extra.forEach(function(x, i){
-      var em = (D.extraMeta && D.extraMeta[i]) || {};
-      gh.push('gh issue create --repo "$REPO" --milestone "' + bq(ms) + '" --label "proyecto propuesto" --title "' + bq('Fase ' + p.n + ' · Propuesto: ' + x.name) + '" --body "$(cat <<\'FIN\'');
-      gh.push('Proyecto propuesto de la fase ' + p.n + ' (dificultad media). Haz al menos uno de los dos; el otro ciérralo como \"not planned\".\n\n' + x.goal + '\n\n## Listo cuando\n' + listo(em.done || x.done) + '\n\nDetalle completo en el plan: ');
-      gh.push('FIN');
-      gh.push(')$PLAN/#fase-' + p.n + '"');
-    });
-    var semanas = (D.weeks || []).map(function(w){ return '- [ ] Semana ' + w.w + ' · ' + w.t; }).join('\n');
-    var cursos = p.courses.map(function(c){ return '- [ ] ' + c[1]; }).join('\n');
-    gh.push('gh issue create --repo "$REPO" --milestone "' + bq(ms) + '" --label "semanas y cursos" --title "' + bq('Fase ' + p.n + ' · Semanas y cursos') + '" --body "$(cat <<\'FIN\'');
-    gh.push('Marca cada semana al terminarla y cada curso al verlo. Cierra este issue cuando esté todo marcado.\n\n## Semanas\n' + semanas + '\n\n## Cursos\n' + cursos + '\n\nDetalle completo en el plan: ');
-    gh.push('FIN');
-    gh.push(')$PLAN/#fase-' + p.n + '"');
-    gh.push('');
-  });
-  gh.push('echo "Listo. Revisa https://github.com/$REPO/milestones"');
-  gh.push('# Después invita a Ronald: gh api -X PUT "repos/$REPO/collaborators/USUARIO-DE-RONALD"');
-  document.getElementById('ghScript').textContent = gh.join('\n');
-
   var steps = Array.prototype.slice.call(container.querySelectorAll('.step'));
   var rail = document.getElementById('rail');
   steps.forEach(function(s, i){
@@ -4364,15 +4280,96 @@ var PHASES = [
     var t = document.getElementById('toast');
     if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
     t.textContent = texto; t.hidden = false;
-    clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.hidden = true; }, 4000);
+    clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.hidden = true; }, 4500);
   }
-  document.addEventListener('click', function(e){
+
+  // ---- Avance: se guarda en avance.json, rama "avance" de gcruzz/IT-Programming ----
+  var AV = { api: 'https://api.github.com/repos/gcruzz/IT-Programming/contents/avance.json', rama: 'avance', clave: 'ruta-ronald-llave' };
+  var avance = { marcadas: {} }, avSha = null, pendientes = {}, guardarTimer = null, guardando = false;
+  function llave(){ try { return localStorage.getItem(AV.clave) || ''; } catch(e) { return ''; } }
+  function estadoAvance(texto, tipo){
+    var el = document.getElementById('avstate'); if (el) { el.textContent = texto; el.className = 'where avstate ' + (tipo || ''); }
+    var m = document.getElementById('avmsg'); if (m) m.textContent = texto;
+  }
+  function b64(t){ return btoa(unescape(encodeURIComponent(t))); }
+  function unb64(t){ return decodeURIComponent(escape(atob(String(t).replace(/\s/g, '')))); }
+  function textoDe(b){ return b.getAttribute('data-txt') || ('Semana ' + b.getAttribute('data-sem')); }
+  function ponerClaves(){
+    steps.forEach(function(sec){
+      if (!sec.classList.contains('phase')) return;
+      var n = sec.getAttribute('data-id').replace('fase-', '');
+      Array.prototype.forEach.call(sec.querySelectorAll('.courses input'), function(b){ b.setAttribute('data-key', 'c' + n + ':' + b.getAttribute('data-txt')); });
+      Array.prototype.forEach.call(sec.querySelectorAll('input[data-sem]'), function(b){ b.setAttribute('data-key', 'w:' + b.getAttribute('data-sem')); });
+      Array.prototype.forEach.call(sec.querySelectorAll('.project.main input[data-txt]'), function(b){ b.setAttribute('data-key', 'p' + n + ':' + b.getAttribute('data-txt')); });
+      Array.prototype.forEach.call(sec.querySelectorAll('.extras > .project'), function(x){
+        Array.prototype.forEach.call(x.querySelectorAll('input[data-txt]'), function(b){ b.setAttribute('data-key', 'x' + n + ':' + x.getAttribute('data-name') + ':' + b.getAttribute('data-txt')); });
+      });
+    });
+  }
+  function pintar(){
+    boxes.forEach(function(b){ var k = b.getAttribute('data-key'); if (k) b.checked = !!avance.marcadas[k]; });
+    render();
+  }
+  function api(metodo, cuerpo){
+    var opts = { method: metodo, cache: 'no-store', headers: { 'Authorization': 'Bearer ' + llave(), 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' } };
+    if (cuerpo) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(cuerpo); }
+    return fetch(AV.api + (metodo === 'GET' ? '?ref=' + AV.rama + '&t=' + Date.now() : ''), opts).then(function(r){
+      if (!r.ok) { var e = new Error('HTTP ' + r.status); e.status = r.status; throw e; }
+      return r.json();
+    });
+  }
+  function motivo(e){
+    if (e.status === 401) return 'La llave no funciona: pídele una nueva a tu mentor';
+    if (e.status === 403 || e.status === 404) return 'La llave no tiene permiso: pídele a tu mentor que la revise';
+    return 'Sin conexión con GitHub: revisa internet y recarga';
+  }
+  function cargar(){
+    if (!llave()) { estadoAvance('Avance sin conectar', 'off'); pintar(); return Promise.resolve(false); }
+    estadoAvance('Cargando avance…');
+    return api('GET').then(function(d){
+      avSha = d.sha;
+      try { avance = JSON.parse(unb64(d.content)); } catch(e) { avance = { marcadas: {} }; }
+      if (!avance.marcadas) avance.marcadas = {};
+      pintar(); estadoAvance('Avance al día ✓', 'ok'); return true;
+    })['catch'](function(e){ estadoAvance(motivo(e), 'err'); return false; });
+  }
+  function guardar(){
+    if (guardando) { clearTimeout(guardarTimer); guardarTimer = setTimeout(guardar, 800); return; }
+    var lote = pendientes, ks = Object.keys(lote);
+    pendientes = {};
+    if (!ks.length) return;
+    guardando = true; estadoAvance('Guardando…');
+    var ahora = new Date().toISOString();
+    ks.forEach(function(k){ if (lote[k].on) avance.marcadas[k] = ahora; else delete avance.marcadas[k]; });
+    avance.actualizado = ahora;
+    pintar();
+    var msg = ks.length === 1 ? (lote[ks[0]].on ? 'Marca: ' : 'Desmarca: ') + lote[ks[0]].txt : 'Avance: ' + ks.length + ' cambios';
+    api('PUT', { message: msg, content: b64(JSON.stringify(avance, null, 1) + '\n'), sha: avSha, branch: AV.rama }).then(function(r){
+      avSha = r.content.sha; guardando = false;
+      estadoAvance('Guardado ✓ ' + new Date().toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit' }), 'ok');
+      if (Object.keys(pendientes).length) guardar();
+    })['catch'](function(e){
+      guardando = false;
+      ks.forEach(function(k){ if (!pendientes[k]) pendientes[k] = lote[k]; });
+      if (e.status === 409 || e.status === 422) {   // se guardó algo desde otro lado: recarga y vuelve a aplicar
+        cargar().then(function(ok){ if (ok) guardar(); });
+      } else {
+        estadoAvance('No se guardó. ' + motivo(e), 'err');
+        aviso('No se pudo guardar tu marca. ' + motivo(e) + '.');
+      }
+    });
+  }
+  document.addEventListener('change', function(e){
     var b = e.target;
-    if (!b || b.tagName !== 'INPUT' || b.type !== 'checkbox' || !b.closest('#steps')) return;
-    e.preventDefault();
-    var zona = b.closest('[data-issue]'), link = zona ? zona.querySelector('.gh-link') : null;
-    if (link) { link.classList.add('flash'); setTimeout(function(){ link.classList.remove('flash'); }, 1600); }
-    aviso('Esto se marca en GitHub, no aquí. Toca «Marcar en GitHub →» y marca la casilla en el issue: en unos minutos aparece aquí.');
+    if (!b || b.type !== 'checkbox' || !b.closest('#steps') || !b.getAttribute('data-key')) return;
+    if (!llave()) {
+      b.checked = !b.checked;
+      aviso('Primero conecta tu avance: en la pantalla GitHub, pega la llave que te dio tu mentor.');
+      return;
+    }
+    pendientes[b.getAttribute('data-key')] = { on: b.checked, txt: textoDe(b) };
+    render();
+    clearTimeout(guardarTimer); guardarTimer = setTimeout(guardar, 1200);
   });
 
   document.addEventListener('click', function(e){
@@ -4407,55 +4404,19 @@ var PHASES = [
   render();
   go(start, false);
 
-  var ISSUES = 'https://github.com/gcruzz/IT-Programming/issues/';
-  function norm(t){ return String(t).replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, ''); }
-  function aplicar(cont, it, filtro){
-    if (!cont || !it) return;
-    var set = {}, cerrado = it.estado === 'cerrado';
-    (it.marcadas || []).forEach(function(t){ set[norm(t)] = 1; });
-    Array.prototype.forEach.call(cont.querySelectorAll(filtro || 'input[data-txt]'), function(b){
-      b.checked = cerrado || !!set[norm(b.getAttribute('data-txt'))];
-    });
-  }
-  function enlazar(sec, tipo, it){
-    if (!it) return;
-    Array.prototype.forEach.call(sec.querySelectorAll('.gh-link[data-gh="' + tipo + '"]'), function(a){ a.href = ISSUES + it.numero; });
-  }
-  function renderOficial(d){
-    if (!d || !d.fases) return;
-    steps.forEach(function(sec){
-      if (!sec.classList.contains('phase')) return;
-      var f = d.fases[sec.getAttribute('data-id').replace('fase-', '')];
-      if (!f) return;
-      var prueba = null, semanas = null, propuestos = [];
-      f.issues.forEach(function(it){ if (it.tipo === 'prueba') prueba = it; else if (it.tipo === 'semanas') semanas = it; else if (it.tipo === 'propuesto') propuestos.push(it); });
-      aplicar(sec.querySelector('.project.main'), prueba); enlazar(sec, 'prueba', prueba);
-      Array.prototype.forEach.call(sec.querySelectorAll('.extras > .project'), function(x, i){
-        var nombre = x.getAttribute('data-name'), it = null;
-        propuestos.forEach(function(p){ if (!it && p.titulo.indexOf(nombre) >= 0) it = p; });
-        aplicar(x, it); enlazar(sec, 'x' + i, it);
-        x.classList.toggle('np', !!it && it.estado === 'no planeado');
-      });
-      if (semanas) {
-        Array.prototype.forEach.call(sec.querySelectorAll('.courses'), function(ul){ aplicar(ul, semanas); });
-        var hechas = {};
-        (semanas.marcadas || []).forEach(function(t){ var m = /^Semana (\d+)\b/.exec(norm(t)); if (m) hechas[m[1]] = 1; });
-        Array.prototype.forEach.call(sec.querySelectorAll('input[data-sem]'), function(b){ b.checked = semanas.estado === 'cerrado' || !!hechas[b.getAttribute('data-sem')]; });
-        enlazar(sec, 'semanas', semanas);
-      }
-      sec.setAttribute('data-cerrados', f.cerrados); sec.setAttribute('data-total', f.total);
-    });
-    render();
-    var fecha = '';
-    try { fecha = new Date(d.actualizado).toLocaleString('es'); } catch(e) {}
-    document.getElementById('count').title = 'Avance marcado en GitHub' + (fecha ? ', actualizado el ' + fecha : '');
-  }
-  try {
-    fetch('progreso.json', { cache: 'no-store' })
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(renderOficial)
-      ['catch'](function(){});
-  } catch(e) {}
+  ponerClaves();
+  document.getElementById('avconectar').addEventListener('click', function(){
+    var v = document.getElementById('avtoken').value.replace(/\s/g, '');
+    if (!v) { estadoAvance('Pega la llave primero', 'err'); return; }
+    try { localStorage.setItem(AV.clave, v); } catch(e) { estadoAvance('Este navegador no deja guardar la llave', 'err'); return; }
+    document.getElementById('avtoken').value = '';
+    cargar().then(function(ok){ if (ok) aviso('¡Listo! Tu avance está conectado. Cada casilla que marques se guarda sola.'); });
+  });
+  document.getElementById('avquitar').addEventListener('click', function(){
+    try { localStorage.removeItem(AV.clave); } catch(e) {}
+    avance = { marcadas: {} }; avSha = null; pintar(); estadoAvance('Avance sin conectar', 'off');
+  });
+  cargar();
 })();
 </script>
 
